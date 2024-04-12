@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Quattrocento } from "next/font/google";
 import "@/app/assets/global.css";
+import Header from "./components/header";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const quattrocento = Quattrocento({
@@ -22,7 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${quattrocento.variable} font-serif`}>
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        <main className="p-gap flex flex-col gap-gap max-w-screen-xl mx-auto">
+          <Header/>
+          <Navbar/>
+          {children}
+          <Footer/>
+        </main>
+      </body>
     </html>
   );
 }

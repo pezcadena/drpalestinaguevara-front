@@ -7,14 +7,10 @@ import NewContentCard from "./components/new-content-card";
 import Subtitle from "./components/subtitle";
 export default function Home() {
   return (
-    <main className="p-gap flex flex-col gap-gap max-w-screen-xl mx-auto">
-      <section className="flex flex-col gap-gap">
-        <Header/>
-        <Navbar/>
-        <div className="flex gap-gap">
+    <div className="flex flex-col gap-gap">
+      <section className="flex gap-gap">
           <HeadlineCard/>
           <Gallery/>
-        </div>
       </section>
       <section className="flex flex-col gap-gap">
         <Subtitle label="Últimas publicaciones"/>
@@ -36,7 +32,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Footer/>
-    </main>
+    </div>
   );
 }
