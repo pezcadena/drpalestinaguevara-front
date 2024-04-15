@@ -5,6 +5,8 @@ import "@/app/assets/global.css";
 import Header from "./components/header";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import { PrismicPreview } from '@prismicio/next'
+import { repositoryName } from '@/prismicio'
 
 const inter = Inter({ subsets: ["latin"] });
 const quattrocento = Quattrocento({
@@ -30,6 +32,7 @@ export default function RootLayout({
           <Header/>
           <Navbar/>
           {children}
+          <PrismicPreview repositoryName={repositoryName} />
           <Footer/>
         </main>
       </body>
