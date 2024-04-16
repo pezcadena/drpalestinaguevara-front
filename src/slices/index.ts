@@ -3,5 +3,7 @@
 import dynamic from "next/dynamic";
 
 export const components = {
-  title: dynamic(() => import("./Title")),
+  image: dynamic(() => import("./Image")),
+  page_description: dynamic(() => import("./PageDescription")),
+  title: dynamic(() => import("./Headline")),
 };

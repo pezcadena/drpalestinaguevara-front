@@ -4,7 +4,10 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type LandingPageDocumentDataSlicesSlice = TitleSlice;
+type LandingPageDocumentDataSlicesSlice =
+  | ImageSlice
+  | PageDescriptionSlice
+  | TitleSlice;
 
 /**
  * Content for Landing Page documents
@@ -63,7 +66,7 @@ interface LandingPageDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type LandingPageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
+  prismic.PrismicDocumentWithoutUID<
     Simplify<LandingPageDocumentData>,
     "landing_page",
     Lang
@@ -72,11 +75,98 @@ export type LandingPageDocument<Lang extends string = string> =
 export type AllDocumentTypes = LandingPageDocument;
 
 /**
- * Primary content in *Title → Primary*
+ * Primary content in *Image → Primary*
+ */
+export interface ImageSliceDefaultPrimary {
+  /**
+   * image field in *Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Image Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Image*
+ */
+type ImageSliceVariation = ImageSliceDefault;
+
+/**
+ * Image Shared Slice
+ *
+ * - **API ID**: `image`
+ * - **Description**: Image
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageSlice = prismic.SharedSlice<"image", ImageSliceVariation>;
+
+/**
+ * Primary content in *PageDescription → Primary*
+ */
+export interface PageDescriptionSliceDefaultPrimary {
+  /**
+   * Description field in *PageDescription → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page_description.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for PageDescription Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PageDescriptionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PageDescriptionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PageDescription*
+ */
+type PageDescriptionSliceVariation = PageDescriptionSliceDefault;
+
+/**
+ * PageDescription Shared Slice
+ *
+ * - **API ID**: `page_description`
+ * - **Description**: PageDescription
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PageDescriptionSlice = prismic.SharedSlice<
+  "page_description",
+  PageDescriptionSliceVariation
+>;
+
+/**
+ * Primary content in *Headline → Primary*
  */
 export interface TitleSliceDefaultPrimary {
   /**
-   * Title field in *Title → Primary*
+   * Title field in *Headline → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -86,7 +176,7 @@ export interface TitleSliceDefaultPrimary {
   title: prismic.RichTextField;
 
   /**
-   * Description field in *Title → Primary*
+   * Description field in *Headline → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -96,7 +186,7 @@ export interface TitleSliceDefaultPrimary {
   description: prismic.RichTextField;
 
   /**
-   * Carousel field in *Title → Primary*
+   * Carousel field in *Headline → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -107,7 +197,7 @@ export interface TitleSliceDefaultPrimary {
 }
 
 /**
- * Default variation for Title Slice
+ * Default variation for Headline Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
@@ -120,12 +210,12 @@ export type TitleSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Slice variation for *Title*
+ * Slice variation for *Headline*
  */
 type TitleSliceVariation = TitleSliceDefault;
 
 /**
- * Title Shared Slice
+ * Headline Shared Slice
  *
  * - **API ID**: `title`
  * - **Description**: Title
@@ -147,6 +237,14 @@ declare module "@prismicio/client" {
       LandingPageDocumentData,
       LandingPageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      ImageSlice,
+      ImageSliceDefaultPrimary,
+      ImageSliceVariation,
+      ImageSliceDefault,
+      PageDescriptionSlice,
+      PageDescriptionSliceDefaultPrimary,
+      PageDescriptionSliceVariation,
+      PageDescriptionSliceDefault,
       TitleSlice,
       TitleSliceDefaultPrimary,
       TitleSliceVariation,

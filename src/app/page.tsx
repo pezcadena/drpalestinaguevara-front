@@ -1,3 +1,4 @@
+import { TitleSlice } from "../../prismicio-types";
 import Gallery from "./components/gallery";
 import HeadlineCard from "./components/headline-card";
 import NewContentCard from "./components/new-content-card";
@@ -7,14 +8,15 @@ import {createClient} from "@/prismicio";
 export default async function Home() {
   const client = createClient();
 
-  const page:any = await client.getSingle('landing_page');
+  const page = await client.getSingle('landing_page');
 
-  const title = page.data.slices[0]?.primary.title[0].text
-  const subtitle = page.data.slices[0]?.primary.description[0].text
+  const title = page.data.slices[0] as TitleSlice;
+  const subtitle = page.data.slices[0];
+  const descriptionList = page.data.slices.filter((slice:any)=>slice.slice_type=="page_description");
 
   return (
     <div className="flex flex-col gap-gap">
-      <section className="flex gap-gap">
+      <section className="flex gap-gap h-[433px]">
           <HeadlineCard
             title={title}
             subtitle={subtitle}
@@ -22,6 +24,17 @@ export default async function Home() {
           <Gallery/>
       </section>
       <section className="flex flex-col gap-gap">
+        <div className="flex flex-wrap -m-mitad-gap items-stretch">
+          {
+            descriptionList.map(description=>
+              <div key={description.id} className="grow basis-1/2 p-mitad-gap">
+                <HeadlineCard
+                  subtitle={description}
+                />
+              </div>
+            )
+          }
+        </div>
         <Subtitle label="Últimas publicaciones"/>
         <div className="flex flex-wrap -m-mitad-gap">
           <div className="grow basis-1/3 p-mitad-gap">
