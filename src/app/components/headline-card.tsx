@@ -1,11 +1,17 @@
-export default function HeadlineCard(){
+interface HeadlineCardProps{
+    title: string,
+    subtitle: string
+}
+
+export default function HeadlineCard({title, subtitle}:HeadlineCardProps){
+
     return (
-        <article className="flex flex-col gap-gap p-padding justify-center bg-primary rounded">
-            <h1 className="text-h2-bold-desktop text-white font-serif">
-                Párrafo grande de titular de la página
+        <article className="flex flex-col gap-gap p-padding justify-center bg-primary rounded w-[650px]">
+            <h1 className="text-h3-bold-desktop text-white font-serif">
+                {title}
             </h1>
             <p className="text-white">
-                Párrafo pequeño que complementa el titular de la página
+                {subtitle}
             </p>
         </article>
     )

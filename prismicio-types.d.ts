@@ -63,7 +63,7 @@ interface LandingPageDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type LandingPageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
+  prismic.PrismicDocumentWithUID<
     Simplify<LandingPageDocumentData>,
     "landing_page",
     Lang

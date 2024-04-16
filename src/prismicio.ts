@@ -36,7 +36,7 @@ export const createClient = (config: prismicNext.CreateClientConfig = {}) => {
   const client = prismic.createClient(repositoryName, {
     routes:[
       {
-        type: 'homepage',
+        type: 'landing_page',
         path:'/'
       }
     ],
