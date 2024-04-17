@@ -1,4 +1,4 @@
-import { TitleSlice } from "../../prismicio-types";
+import { PageDescriptionSlice, TitleSlice } from "../../prismicio-types";
 import Gallery from "./components/gallery";
 import HeadlineCard from "./components/headline-card";
 import NewContentCard from "./components/new-content-card";
@@ -11,8 +11,8 @@ export default async function Home() {
   const page = await client.getSingle('landing_page');
 
   const title = page.data.slices[0] as TitleSlice;
-  const subtitle = page.data.slices[0];
-  const descriptionList = page.data.slices.filter((slice:any)=>slice.slice_type=="page_description");
+  const subtitle = page.data.slices[0] as TitleSlice;
+  const descriptionList = page.data.slices.filter((slice:any)=>slice.slice_type=="page_description") as PageDescriptionSlice[];
 
   return (
     <div className="flex flex-col gap-gap">

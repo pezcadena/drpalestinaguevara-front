@@ -1,9 +1,10 @@
 import { PrismicRichText } from "@prismicio/react";
-import { LandingPageDocumentDataSlicesSlice, TitleSlice } from "../../../prismicio-types";
+import { PageDescriptionSlice, TitleSlice } from "../../../prismicio-types";
 
 interface HeadlineCardProps{
     title?: TitleSlice,
-    subtitle?: LandingPageDocumentDataSlicesSlice,
+    subtitle?: PageDescriptionSlice
+    | TitleSlice,
 }
 
 export default function HeadlineCard({title, subtitle}:HeadlineCardProps){
