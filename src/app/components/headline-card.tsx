@@ -8,11 +8,20 @@ interface HeadlineCardProps{
 }
 
 export default function HeadlineCard({title, subtitle}:HeadlineCardProps){
+    if (title) {
+        return (
+            <article className="flex flex-col gap-gap p-padding justify-center bg-primary rounded h-full">
+                <h1 className="text-h3-bold-desktop text-white font-serif">
+                    <PrismicRichText field={title.primary.title} />
+                </h1>
+                <span className="text-white">
+                    <PrismicRichText field={subtitle?.primary.description} />
+                </span>
+            </article>
+        )
+    }
     return (
         <article className="flex flex-col gap-gap p-padding justify-center bg-primary rounded h-full">
-            <h1 className="text-h3-bold-desktop text-white font-serif">
-                <PrismicRichText field={title?.primary.title} />
-            </h1>
             <span className="text-white">
                 <PrismicRichText field={subtitle?.primary.description} />
             </span>

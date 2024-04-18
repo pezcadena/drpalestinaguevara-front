@@ -7,11 +7,15 @@ const config: Config = {
   theme: {
     extend: {
       fontSize:{
+        'h1-bold-desktop': ['60px', {
+          fontWeight: '700',
+          lineHeight: '1'
+        }],
         'h2-bold-desktop': ['40px', {
           fontWeight: '700',
           lineHeight: '1'
         }],
-        'h1-bold-desktop': ['60px', {
+        'h2-bold': ['24px', {
           fontWeight: '700',
           lineHeight: '1'
         }],
@@ -35,6 +39,7 @@ const config: Config = {
       },
       borderRadius:{
         DEFAULT: '1rem',
+        'sm': '0.5rem'
       }
     },
   },
