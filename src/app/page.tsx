@@ -16,7 +16,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-gap">
-      <section className="flex gap-gap lg:h-[433px] flex-wrap lg:flex-nowrap">
+      <section className="flex gap-gap lg:h-[433px] flex-wrap lg:flex-nowrap flex-col-reverse lg:flex-row">
           <HeadlineCard
             title={title}
             subtitle={subtitle}
