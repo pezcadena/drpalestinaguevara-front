@@ -30,7 +30,8 @@ const config: Config = {
       colors:{
         'primary':"#319853",
         'secondary':"#4F8ABB",
-        'white':'#FFFAF9'
+        'white':'#FFFAF9',
+        'light': '#EDE8E8'
       },
       spacing:{
         'gap':'1rem',

@@ -1,12 +1,10 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Quattrocento } from "next/font/google";
 import "@/app/assets/global.css";
-import Header from "./components/header";
-import Navbar from "./components/navbar";
+import { repositoryName } from '@/prismicio';
+import { PrismicPreview } from '@prismicio/next';
+import type { Metadata } from "next";
+import { Inter, Quattrocento } from "next/font/google";
 import Footer from "./components/footer";
-import { PrismicPreview } from '@prismicio/next'
-import { repositoryName } from '@/prismicio'
+import Header from "./components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 const quattrocento = Quattrocento({
@@ -30,7 +28,6 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <main className="p-gap flex flex-col gap-gap max-w-screen-xl mx-auto">
           <Header/>
-          <Navbar/>
           {children}
           <PrismicPreview repositoryName={repositoryName} />
           <Footer/>

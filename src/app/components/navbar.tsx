@@ -1,11 +1,15 @@
 "use client"
 
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import ButtonLink from "./button-link";
 import clsx from "clsx";
 
-export default function Navbar(){
-    let [isVisible, setVisible] = useState(true);
+interface navbarProps{
+    isVisible: boolean,
+    onClickLink: Dispatch<SetStateAction<boolean>>
+}
+
+export default function Navbar({isVisible, onClickLink}:navbarProps){
 
     const pages = [
         {
@@ -46,20 +50,15 @@ export default function Navbar(){
         },
     ]
 
-    function changeVisibility(){
-        console.log("dfasdf", isVisible);
-        setVisible(false);
-        console.log("dfasdf", isVisible);
-        
-        
-    }
-
     return(
+        
+
         <nav className={
             clsx(
-                "flex flex-col lg:flex-row w-full bg-secondary rounded overflow-hidden transition-all",
+                "flex flex-col lg:flex-row w-full bg-secondary rounded overflow-hidden transition-all ease-out duration-500 z-50 lg:h-auto",
                 {
-                    "h-0": !isVisible 
+                    "h-0": !isVisible,
+                    "h-[504px]": isVisible 
                 }
             )
         }>
@@ -67,14 +66,12 @@ export default function Navbar(){
                 pages.map(page=>
                     <ButtonLink 
                         label={page.name}
-                        key={page.name}
                         href={page.href}
+                        key={page.name}
+                        onClickLink={onClickLink}
                     />
                 )
             }
-            <button onClick={changeVisibility}>
-                prueba
-            </button>
         </nav>
     )
 }
