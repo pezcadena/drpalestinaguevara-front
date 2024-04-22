@@ -1,15 +1,11 @@
-"use client"
 import { PrismicRichText } from "@prismicio/react"
 import { PublicationDocument } from "../../../../prismicio-types"
 
-interface CiteCardProps{
+interface PublicationCardProps{
     document: PublicationDocument<string>
 }
 
-export default function CiteCard({document}: CiteCardProps){
-    console.log(document);
-    
-
+export default function CiteCard({document}: PublicationCardProps){
     return(
         <article
             className="
