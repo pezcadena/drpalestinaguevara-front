@@ -4,6 +4,49 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Content for Category documents
+ */
+interface CategoryDocumentData {
+  /**
+   * Name field in *Category*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: category.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Content field in *Category*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: category.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  content: prismic.ContentRelationshipField;
+}
+
+/**
+ * Category document from Prismic
+ *
+ * - **API ID**: `category`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CategoryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<CategoryDocumentData>,
+    "category",
+    Lang
+  >;
+
 type LandingPageDocumentDataSlicesSlice =
   | ImageSlice
   | PageDescriptionSlice
@@ -72,7 +115,75 @@ export type LandingPageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = LandingPageDocument;
+/**
+ * Content for Publication documents
+ */
+interface PublicationDocumentData {
+  /**
+   * Cite field in *Publication*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: publication.cite
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  cite: prismic.RichTextField;
+
+  /**
+   * Date field in *Publication*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: publication.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date: prismic.DateField;
+
+  /**
+   * Optional Link field in *Publication*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: publication.optional_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  optional_link: prismic.LinkField;
+
+  /**
+   * Category field in *Publication*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: publication.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  category: prismic.ContentRelationshipField<"category">;
+}
+
+/**
+ * Publication document from Prismic
+ *
+ * - **API ID**: `publication`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PublicationDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<PublicationDocumentData>,
+    "publication",
+    Lang
+  >;
+
+export type AllDocumentTypes =
+  | CategoryDocument
+  | LandingPageDocument
+  | PublicationDocument;
 
 /**
  * Primary content in *Image → Primary*
@@ -233,9 +344,13 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      CategoryDocument,
+      CategoryDocumentData,
       LandingPageDocument,
       LandingPageDocumentData,
       LandingPageDocumentDataSlicesSlice,
+      PublicationDocument,
+      PublicationDocumentData,
       AllDocumentTypes,
       ImageSlice,
       ImageSliceDefaultPrimary,

@@ -30,17 +30,17 @@ export default function Footer(){
                     </div>
                     <div className="flex justify-between items-center">
                     </div>
-                </div>
-                <div className="w-full flex justify-between items-center gap-gap">
-                    <button className="w-full flex justify-center p-mitad-gap bg-secondary rounded-sm lg:w-fit">
-                        <BsInstagram className="text-4xl text-white"/>
-                    </button>
-                    <button className="w-full flex justify-center p-mitad-gap bg-secondary rounded-sm lg:w-fit">
-                        <BsTwitter className="text-4xl text-white"/>
-                    </button>
-                    <button className="w-full flex justify-center p-mitad-gap bg-secondary rounded-sm lg:w-fit">
-                        <BsFacebook className="text-4xl text-white"/>
-                    </button>
+                    <div className="w-full flex justify-between items-center gap-gap">
+                        <button className="w-full flex justify-center p-mitad-gap bg-secondary rounded-sm lg:w-fit">
+                            <BsInstagram className="text-4xl text-white"/>
+                        </button>
+                        <button className="w-full flex justify-center p-mitad-gap bg-secondary rounded-sm lg:w-fit">
+                            <BsTwitter className="text-4xl text-white"/>
+                        </button>
+                        <button className="w-full flex justify-center p-mitad-gap bg-secondary rounded-sm lg:w-fit">
+                            <BsFacebook className="text-4xl text-white"/>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div className="flex flex-col justify-end gap-padding order-1 lg:order-2 hidden">
