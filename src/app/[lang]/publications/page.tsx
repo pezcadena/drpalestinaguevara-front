@@ -3,11 +3,19 @@ import dayjs from "dayjs";
 import ContentIndex from "../components/content-index";
 import Gallery from "../components/gallery";
 import HeadlineCard from "../components/headline-card";
-import PublicationBody from "./components/publication-body";
+import PublicationListWrapper from "./components/publication-list-wrapper";
 import { PublicationListProps } from "./components/publication-list";
+import { getDictionary, Locale } from "@/app/dictionaries/dictionaries";
 
-export default async function Publications() {
-    
+export type LangProps = {
+    params:{
+        lang: Locale
+    }
+} 
+
+export default async function Publications({params:{lang}}:LangProps) {
+
+    const langDictionary = await getDictionary(lang);
     const client = createClient();
     const cites = await client.getAllByType('publication');
     const publicationList: PublicationListProps[]= createPublicationList()
@@ -16,7 +24,7 @@ export default async function Publications() {
         <div className="flex flex-col gap-gap">
             <section className="flex gap-gap lg:h-[433px] flex-wrap lg:flex-nowrap flex-col-reverse lg:flex-row">
                 <HeadlineCard
-                    titleText="Publicaciones"
+                    titleText={langDictionary.navbar.publications}
                 />
                 <Gallery/>
             </section>
@@ -26,7 +34,7 @@ export default async function Publications() {
                 <ContentIndex
                     sectionList={publicationList.map(publication=>publication.title)}
                 />
-                <PublicationBody
+                <PublicationListWrapper
                     publicationList={publicationList}
                 />
             </section>

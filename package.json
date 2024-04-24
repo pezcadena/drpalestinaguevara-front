@@ -10,11 +10,13 @@
     "slicemachine": "start-slicemachine"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.5.4",
     "@prismicio/client": "^7.4.1",
     "@prismicio/next": "^1.5.0",
     "@prismicio/react": "^2.7.4",
     "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
+    "negotiator": "^0.6.3",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
@@ -23,6 +25,7 @@
   },
   "devDependencies": {
     "@slicemachine/adapter-next": "^0.3.38",
+    "@types/negotiator": "^0.6.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

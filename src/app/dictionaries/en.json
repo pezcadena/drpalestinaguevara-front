@@ -1,0 +1,15 @@
+{
+    "headerTitle":"Evolutionary Ecology Laboratory",
+    "navbar":{
+        "home": "Home",
+        "publications":"Publications",
+        "research":"Research",
+        "students":"Students",
+        "collaborators":"Collaborators",
+        "dra":"Dra. Palestina-Guevara",
+        "gallery":"Gallery",
+        "activities":"Activities",
+        "contact":"Contact",
+        "changeLang":"Español"
+    }
+}

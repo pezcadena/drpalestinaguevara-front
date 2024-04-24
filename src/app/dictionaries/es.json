@@ -1,0 +1,15 @@
+{
+    "headerTitle":"Laboratorio de Ecología Evolutiva",
+    "navbar":{
+        "home": "Inicio",
+        "publications":"Publicaciones",
+        "research":"Investigación",
+        "students":"Alumnos",
+        "collaborators":"Colaboradores",
+        "dra":"Dra. Palestina-Guevara",
+        "gallery":"Galería",
+        "activities":"Actividades",
+        "contact":"Contacto",
+        "changeLang":"English"
+    }
+}

@@ -1,5 +1,5 @@
 import { PrismicRichText } from "@prismicio/react";
-import { PageDescriptionSlice, TitleSlice } from "../../../prismicio-types";
+import { PageDescriptionSlice, TitleSlice } from "../../../../prismicio-types";
 
 interface HeadlineCardProps{
     titleSlice?: TitleSlice,

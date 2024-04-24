@@ -3,51 +3,65 @@
 import { Dispatch, SetStateAction } from "react";
 import ButtonLink from "./button-link";
 import clsx from "clsx";
+import { LangDictionary, Locale } from "@/app/dictionaries/dictionaries";
+import { usePathname } from "next/navigation";
 
 interface navbarProps{
     isVisible: boolean,
-    onClickLink: Dispatch<SetStateAction<boolean>>
+    onClickLink: Dispatch<SetStateAction<boolean>>,
+    langDictionary: LangDictionary,
+    lang: Locale
 }
 
-export default function Navbar({isVisible, onClickLink}:navbarProps){
+export default function Navbar({isVisible, onClickLink, langDictionary, lang}:navbarProps){
+
+    const path = usePathname().split('/').slice(2).join();
 
     const pages = [
         {
-            name:'Inicio',
-            href: '/'
+            name:langDictionary.navbar.home,
+            href: `/${lang}`
         },
         {
-            name:'Publicaciones',
-            href: '/publications'
+            name:langDictionary.navbar.publications,
+            href: `/${lang}/publications`
         },
         {
-            name:'Investigación',
+            name:langDictionary.navbar.research,
             href: null
         },
         {
-            name:'Alumnos',
+            name:langDictionary.navbar.students,
             href: null
         },
         {
-            name:'Colaboradores',
+            name:langDictionary.navbar.collaborators,
             href: null
         },
         {
-            name:'Dra. Palestina-Guevara',
+            name:langDictionary.navbar.dra,
             href: null
         },
         {
-            name:'Galería',
+            name:langDictionary.navbar.gallery,
             href: null
         },
         {
-            name:'Actividades',
+            name:langDictionary.navbar.activities,
             href: null
         },
         {
-            name:'Contacto',
+            name:langDictionary.navbar.contact,
             href: null
         },
+        {
+            name:langDictionary.navbar.changeLang,
+            href:`/${lang == 'es' ? 'en':'es'}${
+                path.length == 0
+                    ? path
+                    : '/'+path
+            }`
+        }
     ]
 
     return(
@@ -58,7 +72,7 @@ export default function Navbar({isVisible, onClickLink}:navbarProps){
                 "flex flex-col lg:flex-row w-full bg-secondary rounded overflow-hidden transition-all ease-out duration-500 z-50 lg:h-auto",
                 {
                     "h-0": !isVisible,
-                    "h-[504px]": isVisible 
+                    "h-[560px]": isVisible 
                 }
             )
         }>

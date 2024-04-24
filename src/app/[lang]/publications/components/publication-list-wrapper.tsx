@@ -2,14 +2,14 @@
 import ScrollSpy from "react-ui-scrollspy";
 import PublicationList, { PublicationListProps } from "./publication-list";
 
-export interface PublicationBodyProps{
+export interface PublicationListWrapperProps{
     publicationList: PublicationListProps[]
 }
 
-export default function PublicationBody(
+export default function PublicationListWrapper(
     {
         publicationList
-    }: PublicationBodyProps
+    }: PublicationListWrapperProps
 ){
     return(
         <section className="flex flex-col gap-gap">

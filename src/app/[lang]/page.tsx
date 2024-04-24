@@ -1,4 +1,4 @@
-import { PageDescriptionSlice, TitleSlice } from "../../prismicio-types";
+import { PageDescriptionSlice, TitleSlice } from "../../../prismicio-types";
 import Gallery from "./components/gallery";
 import HeadlineCard from "./components/headline-card";
 import NewContentCard from "./components/new-content-card";

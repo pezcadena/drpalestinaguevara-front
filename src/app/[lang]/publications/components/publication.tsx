@@ -1,5 +1,6 @@
 import { PrismicRichText } from "@prismicio/react"
-import { PublicationDocument } from "../../../../prismicio-types"
+import { PublicationDocument } from "../../../../../prismicio-types"
+
 
 interface PublicationCardProps{
     document: PublicationDocument<string>

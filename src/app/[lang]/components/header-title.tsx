@@ -1,15 +1,16 @@
 "use client"
-
+import { LangDictionary } from "@/app/dictionaries/dictionaries";
 import Image from "next/image"
 import { Dispatch, SetStateAction } from "react";
 import { MdMenu } from "react-icons/md";
 
 interface HeaderTitleProps{
     isNavbarVisible: boolean,
-    onShowNavbar: Dispatch<SetStateAction<boolean>>
+    onShowNavbar: Dispatch<SetStateAction<boolean>>,
+    langDictionary:LangDictionary
 }
 
-export default function HeaderTitle({isNavbarVisible,onShowNavbar}:HeaderTitleProps){
+export default function HeaderTitle({isNavbarVisible,onShowNavbar, langDictionary}:HeaderTitleProps){
     return (
         <section className="z-40 bg-light">
             <div className="flex justify-center w-full py-gap">
@@ -23,7 +24,7 @@ export default function HeaderTitle({isNavbarVisible,onShowNavbar}:HeaderTitlePr
                     />
                     <div>
                         <h2 className="text-h2-bold lg:text-h2-bold-desktop font-serif text-primary">
-                            Laboratorio de Ecología Evolutiva
+                            {langDictionary.headerTitle}
                         </h2>
                         <p>
                             BUAP

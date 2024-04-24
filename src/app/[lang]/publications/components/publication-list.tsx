@@ -1,5 +1,6 @@
-import Subtitle from "@/app/components/subtitle"
-import { PublicationDocument } from "../../../../prismicio-types"
+
+import { PublicationDocument } from "../../../../../prismicio-types"
+import Subtitle from "../../components/subtitle"
 import Publication from "./publication"
 
 export interface PublicationListProps{
