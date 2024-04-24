@@ -4,11 +4,14 @@ import HeadlineCard from "./components/headline-card";
 import NewContentCard from "./components/new-content-card";
 import Subtitle from "./components/subtitle";
 import {createClient} from "@/prismicio";
+import { LangProps } from "./publications/page";
 
-export default async function Home() {
+export default async function Home({params:{lang}}:LangProps) {
   const client = createClient();
 
-  const page = await client.getSingle('landing_page');
+  const page = await client.getSingle('landing_page',{
+    lang: lang == 'en' ? 'en-us':'es-mx'
+  });
 
   const title = page.data.slices[0] as TitleSlice;
   const subtitle = page.data.slices[0] as TitleSlice;
@@ -27,7 +30,7 @@ export default async function Home() {
         <div className="flex flex-wrap -m-mitad-gap items-stretch">
           {
             descriptionList.map(description=>
-              <div key={description.id} className="grow basis-1/2 p-mitad-gap">
+              <div key={description.id} className="grow lg:basis-1/2 p-mitad-gap">
                 <HeadlineCard
                   subtitle={description}
                 />
