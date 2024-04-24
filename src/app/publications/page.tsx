@@ -1,8 +1,10 @@
 import { createClient } from "@/prismicio";
+import dayjs from "dayjs";
+import ContentIndex from "../components/content-index";
 import Gallery from "../components/gallery";
 import HeadlineCard from "../components/headline-card";
-import PublicationList, { PublicationListProps } from "./components/publication-list";
-import dayjs from "dayjs";
+import PublicationBody from "./components/publication-body";
+import { PublicationListProps } from "./components/publication-list";
 
 export default async function Publications() {
     
@@ -18,16 +20,15 @@ export default async function Publications() {
                 />
                 <Gallery/>
             </section>
-            <section className="flex flex-col gap-gap">
-                {
-                    publicationList.map(publication=>
-                        <PublicationList
-                            key={publication.title}
-                            publicationList={publication.publicationList}
-                            title={publication.title}
-                        />
-                    )
-                }
+            <section className="
+                flex flex-col lg:flex-row-reverse relative gap-gap
+            ">
+                <ContentIndex
+                    sectionList={publicationList.map(publication=>publication.title)}
+                />
+                <PublicationBody
+                    publicationList={publicationList}
+                />
             </section>
         </div>
     );
@@ -43,6 +44,19 @@ export default async function Publications() {
                 title: year.toString(),
                 publicationList: publicationListNueva
             };
+        });
+
+        publicationList.sort((a, b) => {
+            let fechaA = parseInt(a.title);
+            let fechaB = parseInt(b.title);
+          
+            if (fechaA < fechaB) {
+              return 1;
+            }
+            if (fechaA > fechaB) {
+              return -1;
+            }
+            return 0;
         });
         return publicationList;
     }

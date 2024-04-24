@@ -5,3 +5,17 @@
 body{
     background-color: #EDE8E8;
 }
+
+.active-scroll-spy {
+    background-color: #319853;
+}
+
+html {
+    scroll-padding-top: 90px; /* height of your navbar */
+}
+
+@media (min-width: 1024px) {
+    html {
+        scroll-padding-top: 16px; /* height of your navbar */
+    }
+}

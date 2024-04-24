@@ -12,7 +12,10 @@ export default function PublicationList({
     publicationList
 }:PublicationListProps){
     return(
-        <section className="flex flex-col gap-gap">
+        <section
+            className="flex flex-col gap-gap mb-gap"
+            id={title}
+        >
             <Subtitle
                 label={title}
             />

@@ -9,7 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export default function ButtonLink({label, href, onClickLink}:ButtonProps){
     return(
         <Link 
-            className="py-gap text-white underline flex w-full justify-center text-nowrap hover:bg-sky-700 cursor-pointer"
+            className="py-gap text-white flex w-full justify-center text-nowrap hover:bg-sky-700 cursor-pointer"
             href={href ?? ''}
             onClick={()=>onClickLink(false)}
         >
