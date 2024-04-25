@@ -12,5 +12,10 @@
         "contact":"Contact",
         "changeLang":"Español"
     },
-    "lastPublicationsTitle":"Recent publications"
+    "lastPublicationsTitle":"Recent publications",
+    "footer":{
+        "phone":"Phone",
+        "email":"Email",
+        "address":"Address"
+    }
 }

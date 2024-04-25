@@ -1,0 +1,98 @@
+{
+  "format": "custom",
+  "id": "footer",
+  "label": "Footer",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "phone_number": {
+        "type": "Text",
+        "config": {
+          "label": "Phone Number",
+          "placeholder": ""
+        }
+      },
+      "optional_phone_number_1": {
+        "type": "Text",
+        "config": {
+          "label": "Optional Phone Number 1",
+          "placeholder": ""
+        }
+      },
+      "optional_phone_number_2": {
+        "type": "Text",
+        "config": {
+          "label": "Optional Phone Number 2",
+          "placeholder": ""
+        }
+      },
+      "email": {
+        "type": "Text",
+        "config": {
+          "label": "Email",
+          "placeholder": ""
+        }
+      },
+      "optional_email_1": {
+        "type": "Text",
+        "config": {
+          "label": "Optional Email 1",
+          "placeholder": ""
+        }
+      },
+      "optional_email_2": {
+        "type": "Text",
+        "config": {
+          "label": "Optional Email 2",
+          "placeholder": ""
+        }
+      },
+      "address": {
+        "type": "Text",
+        "config": {
+          "label": "Address",
+          "placeholder": ""
+        }
+      },
+      "optional_address_1": {
+        "type": "Text",
+        "config": {
+          "label": "Optional Address 1",
+          "placeholder": ""
+        }
+      },
+      "optional_address_2": {
+        "type": "Text",
+        "config": {
+          "label": "Optional Address 2",
+          "placeholder": ""
+        }
+      },
+      "facebook": {
+        "type": "Link",
+        "config": {
+          "label": "Facebook",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "instagram": {
+        "type": "Link",
+        "config": {
+          "label": "Instagram",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "twitter": {
+        "type": "Link",
+        "config": {
+          "label": "Twitter",
+          "placeholder": "",
+          "select": null
+        }
+      }
+    }
+  }
+}

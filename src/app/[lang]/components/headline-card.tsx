@@ -15,7 +15,7 @@ export default function HeadlineCard({titleSlice, subtitle, titleText}:HeadlineC
                 <h1 className="text-h3-bold-desktop text-white font-serif">
                     <PrismicRichText field={titleSlice.primary.title} />
                 </h1>
-                <span className="text-white">
+                <span className="text-white text-justify">
                     <PrismicRichText field={subtitle?.primary.description} />
                 </span>
             </article>
@@ -32,7 +32,7 @@ export default function HeadlineCard({titleSlice, subtitle, titleText}:HeadlineC
     }
     return (
         <article className="flex flex-col gap-gap p-padding justify-center bg-primary rounded h-full">
-            <span className="text-white">
+            <span className="text-white text-justify">
                 <PrismicRichText field={subtitle?.primary.description} />
             </span>
         </article>

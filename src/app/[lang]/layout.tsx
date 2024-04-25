@@ -37,7 +37,9 @@ export default async function RootLayout({
           />
           {children}
           <PrismicPreview repositoryName={repositoryName} />
-          <Footer/>
+          <Footer
+            langDictionary={langDictionary}
+          />
         </main>
       </body>
     </html>
