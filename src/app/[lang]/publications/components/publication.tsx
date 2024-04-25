@@ -6,7 +6,7 @@ interface PublicationCardProps{
     document: PublicationDocument<string>
 }
 
-export default function CiteCard({document}: PublicationCardProps){
+export default function Publication({document}: PublicationCardProps){
     return(
         <article
             className="
@@ -14,6 +14,7 @@ export default function CiteCard({document}: PublicationCardProps){
                 bg-white
                 text-justify
                 rounded
+                h-full
             "
         >
             <PrismicRichText field={document.data.cite} />

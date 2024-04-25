@@ -13,7 +13,7 @@ const config: Config = {
         }],
         'h2-bold-desktop': ['40px', {
           fontWeight: '700',
-          lineHeight: '1'
+          lineHeight: '1.2'
         }],
         'h2-bold': ['24px', {
           fontWeight: '700',
