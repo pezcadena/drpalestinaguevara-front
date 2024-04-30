@@ -26,7 +26,7 @@ export default async function Publications({params:{lang}}:LangProps) {
                 <HeadlineCard
                     titleText={langDictionary.navbar.publications}
                 />
-                <Gallery/>
+                {/* <Gallery/> */}
             </section>
             <section className="
                 flex flex-col lg:flex-row-reverse relative gap-gap
