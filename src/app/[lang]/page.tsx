@@ -20,14 +20,14 @@ export default async function Home({params:{lang}}:LangProps) {
   const images = page.data.slices[0]?.items;
   
 
-  const recentPublications = await client.getAllByTag('Content',{
+  /* const recentPublications = await client.getAllByTag('Content',{
     orderings:[
       {
         field:'my.publication.date',
         direction:'desc'
       }
     ],
-  });
+  }); */
 
   return (
     <div className="flex flex-col gap-gap">
@@ -53,7 +53,7 @@ export default async function Home({params:{lang}}:LangProps) {
           }
         </div>
         <Subtitle label={langDictionary.lastPublicationsTitle}/>
-        <div className="flex flex-wrap -m-mitad-gap">
+       {/*  <div className="flex flex-wrap -m-mitad-gap">
           {
             recentPublications.map(document=>
               <div 
@@ -66,7 +66,7 @@ export default async function Home({params:{lang}}:LangProps) {
               </div>
             )
           }
-        </div>
+        </div> */}
       </section>
     </div>
   );
