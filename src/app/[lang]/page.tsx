@@ -1,15 +1,13 @@
 import { PageDescriptionSlice, TitleSlice } from "../../../prismicio-types";
 import Gallery from "./components/gallery";
 import HeadlineCard from "./components/headline-card";
-import NewContentWrapper from "./components/new-content-wrapper";
 import Subtitle from "./components/subtitle";
 import {createClient} from "@/prismicio";
 import { LangProps } from "./publications/page";
-import { getDictionary } from "../dictionaries/dictionaries";
 
 export default async function Home({params:{lang}}:LangProps) {
   const client = createClient();
-  const langDictionary = await getDictionary(lang);
+  /* const langDictionary = await getDictionary(lang); */
   
   const page = await client.getSingle('landing_page',{
     lang: lang == 'en' ? 'en-us':'es-mx'
@@ -52,7 +50,7 @@ export default async function Home({params:{lang}}:LangProps) {
             )
           }
         </div>
-        <Subtitle label={langDictionary.lastPublicationsTitle}/>
+        {/* <Subtitle label={langDictionary.lastPublicationsTitle}/> */}
        {/*  <div className="flex flex-wrap -m-mitad-gap">
           {
             recentPublications.map(document=>
