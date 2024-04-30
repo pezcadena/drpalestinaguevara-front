@@ -449,16 +449,21 @@ export interface TitleSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField;
+}
 
+/**
+ * Primary content in *Headline → Items*
+ */
+export interface TitleSliceDefaultItem {
   /**
-   * Carousel field in *Headline → Primary*
+   * Photo field in *Headline → Items*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: title.primary.carousel
+   * - **API ID Path**: title.items[].photo
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  carousel: prismic.ImageField<never>;
+  photo: prismic.ImageField<never>;
 }
 
 /**
@@ -471,7 +476,7 @@ export interface TitleSliceDefaultPrimary {
 export type TitleSliceDefault = prismic.SharedSliceVariation<
   "default",
   Simplify<TitleSliceDefaultPrimary>,
-  never
+  Simplify<TitleSliceDefaultItem>
 >;
 
 /**
@@ -518,6 +523,7 @@ declare module "@prismicio/client" {
       PageDescriptionSliceDefault,
       TitleSlice,
       TitleSliceDefaultPrimary,
+      TitleSliceDefaultItem,
       TitleSliceVariation,
       TitleSliceDefault,
     };

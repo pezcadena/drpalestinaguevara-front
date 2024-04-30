@@ -17,6 +17,8 @@ export default async function Home({params:{lang}}:LangProps) {
   const title = page.data.slices[0] as TitleSlice;
   const subtitle = page.data.slices[0] as TitleSlice;
   const descriptionList = page.data.slices.filter((slice:any)=>slice.slice_type=="page_description") as PageDescriptionSlice[];
+  const images = page.data.slices[0]?.items;
+  
 
   const recentPublications = await client.getAllByTag('Content',{
     orderings:[
@@ -34,7 +36,9 @@ export default async function Home({params:{lang}}:LangProps) {
             titleSlice={title}
             subtitle={subtitle}
           />
-          <Gallery/>
+          <Gallery
+            images={images}
+          />
       </section>
       <section className="flex flex-col gap-gap">
         <div className="flex flex-wrap -m-mitad-gap items-stretch">
