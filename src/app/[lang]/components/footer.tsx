@@ -1,8 +1,7 @@
 import { LangDictionary } from "@/app/dictionaries/dictionaries";
 import { createClient } from "@/prismicio";
-import { PrismicNextLink } from "@prismicio/next";
-import Image from "next/image"
-import { BsInstagram, BsFacebook, BsTwitter } from "react-icons/bs";
+import Image from "next/image";
+import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 
 interface FooterProps{
     langDictionary: LangDictionary,
@@ -14,13 +13,13 @@ export default async function Footer(
         langDictionary
     }: FooterProps
 ){
-    /* const client = createClient();
-    const footerInfo = (await client.getSingle('footer')).data; */
+    const client = createClient();
+    const footerInfo = (await client.getSingle('footer')).data;
 
 
     return(
         <footer className="w-full flex flex-col px-gap py-padding gap-padding lg:flex-row lg:justify-between items-center">
-            {/* <div className="flex flex-col gap-gap w-full lg:max-w-[15rem] order-2 lg:order-1">
+            <div className="flex flex-col gap-gap w-full lg:max-w-[15rem] order-2 lg:order-1">
                 <div className="flex flex-col gap-mitad-gap">
                     <p className="font-bold">
                         {langDictionary.footer.phone}
@@ -94,7 +93,7 @@ export default async function Footer(
                         <BsFacebook className="text-4xl text-white"/>
                     </a>
                 </div>
-            </div> */}
+            </div>
             <Image 
                 src="/img/logo.png"
                 alt="Logo del laboratorio de ecología evolutiva de la BUAP"
