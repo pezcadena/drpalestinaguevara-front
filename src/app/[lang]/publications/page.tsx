@@ -18,7 +18,9 @@ export default async function Publications({params:{lang}}:LangProps) {
     const langDictionary = await getDictionary(lang);
     const client = createClient();
     const cites = await client.getAllByType('publication');
-    const publicationList: PublicationListProps[]= createPublicationList()
+    const publicationList: PublicationListProps[]= createPublicationList();
+    const gallery = (await client.getSingle('publications_gallery')).data.slices[0]?.items;
+
 
     return (
         <div className="flex flex-col gap-gap">
@@ -26,7 +28,9 @@ export default async function Publications({params:{lang}}:LangProps) {
                 <HeadlineCard
                     titleText={langDictionary.navbar.publications}
                 />
-                {/* <Gallery/> */}
+                <Gallery
+                    images={gallery}
+                />
             </section>
             <section className="
                 flex flex-col lg:flex-row-reverse relative gap-gap

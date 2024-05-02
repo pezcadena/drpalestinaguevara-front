@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
+import clsx from "clsx";
 
 interface GalleryProps{
     images:never[] | Simplify<TitleSliceDefaultItem>[] | undefined
@@ -14,6 +15,9 @@ interface GalleryProps{
 export default function Gallery({
     images
 }:GalleryProps){
+    console.log(images?.length);
+    
+
     return (
         <div className="w-full lg:min-w-[778px] rounded">
             <Swiper
@@ -35,10 +39,16 @@ export default function Gallery({
                     images?.map(image=>
                         <SwiperSlide
                         key={image.photo.id} 
-                        className="lg:max-w-[678px] mr-padding lg:mr-gap"
+                        className={
+                            clsx(
+                                {
+                                    "mr-padding lg:mr-gap": images.length > 1
+                                }
+                            )
+                        }
                         >
                             <section
-                                className="rounded h-[433px] flex justify-center overflow-hidden w-full relative items-center min-w-[395px] lg:max-w-[678px]"
+                                className="rounded h-[433px] flex justify-center overflow-hidden w-full relative items-center min-w-[395px]"
                             >
                                 <PrismicNextImage
                                     field={image.photo} 

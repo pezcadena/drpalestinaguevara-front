@@ -333,29 +333,64 @@ export type PublicationDocument<Lang extends string = string> =
     Lang
   >;
 
+type PublicationsGalleryDocumentDataSlicesSlice = ImageSlice;
+
+/**
+ * Content for Publications Gallery documents
+ */
+interface PublicationsGalleryDocumentData {
+  /**
+   * Slice Zone field in *Publications Gallery*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: publications_gallery.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PublicationsGalleryDocumentDataSlicesSlice>;
+}
+
+/**
+ * Publications Gallery document from Prismic
+ *
+ * - **API ID**: `publications_gallery`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PublicationsGalleryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<PublicationsGalleryDocumentData>,
+    "publications_gallery",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | CategoryDocument
   | FooterDocument
   | LandingPageDocument
-  | PublicationDocument;
+  | PublicationDocument
+  | PublicationsGalleryDocument;
 
 /**
- * Primary content in *Image → Primary*
+ * Primary content in *Gallery → Items*
  */
-export interface ImageSliceDefaultPrimary {
+export interface ImageSliceDefaultItem {
   /**
-   * image field in *Image → Primary*
+   * Photo field in *Gallery → Items*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: image.primary.image
+   * - **API ID Path**: image.items[].photo
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>;
+  photo: prismic.ImageField<never>;
 }
 
 /**
- * Default variation for Image Slice
+ * Default variation for Gallery Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
@@ -363,17 +398,17 @@ export interface ImageSliceDefaultPrimary {
  */
 export type ImageSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<ImageSliceDefaultPrimary>,
-  never
+  Record<string, never>,
+  Simplify<ImageSliceDefaultItem>
 >;
 
 /**
- * Slice variation for *Image*
+ * Slice variation for *Gallery*
  */
 type ImageSliceVariation = ImageSliceDefault;
 
 /**
- * Image Shared Slice
+ * Gallery Shared Slice
  *
  * - **API ID**: `image`
  * - **Description**: Image
@@ -512,9 +547,12 @@ declare module "@prismicio/client" {
       LandingPageDocumentDataSlicesSlice,
       PublicationDocument,
       PublicationDocumentData,
+      PublicationsGalleryDocument,
+      PublicationsGalleryDocumentData,
+      PublicationsGalleryDocumentDataSlicesSlice,
       AllDocumentTypes,
       ImageSlice,
-      ImageSliceDefaultPrimary,
+      ImageSliceDefaultItem,
       ImageSliceVariation,
       ImageSliceDefault,
       PageDescriptionSlice,

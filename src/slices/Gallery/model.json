@@ -1,7 +1,7 @@
 {
   "id": "image",
   "type": "SharedSlice",
-  "name": "Image",
+  "name": "Gallery",
   "description": "Image",
   "variations": [
     {
@@ -11,17 +11,17 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
-      "primary": {
-        "image": {
+      "primary": {},
+      "items": {
+        "photo": {
           "type": "Image",
           "config": {
-            "label": "image",
+            "label": "Photo",
             "constraint": {},
             "thumbnails": []
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }
