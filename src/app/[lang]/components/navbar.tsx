@@ -15,7 +15,8 @@ interface navbarProps{
 
 export default function Navbar({isVisible, onClickLink, langDictionary, lang}:navbarProps){
 
-    const path = usePathname().split('/').slice(2).join();
+    const fullPath =usePathname();
+    const pathWithoutLang = fullPath.split('/').slice(2).join();
 
     const pages = [
         {
@@ -57,9 +58,9 @@ export default function Navbar({isVisible, onClickLink, langDictionary, lang}:na
         {
             name:langDictionary.navbar.changeLang,
             href:`/${lang == 'es' ? 'en':'es'}${
-                path.length == 0
-                    ? path
-                    : '/'+path
+                pathWithoutLang.length == 0
+                    ? pathWithoutLang
+                    : '/'+pathWithoutLang
             }`
         }
     ]
@@ -83,6 +84,7 @@ export default function Navbar({isVisible, onClickLink, langDictionary, lang}:na
                         href={page.href}
                         key={page.name}
                         onClickLink={onClickLink}
+                        isActive={page.href == fullPath}
                     />
                 )
             }
