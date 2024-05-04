@@ -3,11 +3,17 @@ import Gallery from "./components/gallery";
 import HeadlineCard from "./components/headline-card";
 import Subtitle from "./components/subtitle";
 import {createClient} from "@/prismicio";
-import { LangProps } from "./publications/page";
-import { getDictionary } from "../dictionaries/dictionaries";
+import { getDictionary, Locale } from "../dictionaries/dictionaries";
 import NewContentWrapper from "./components/new-content-wrapper";
 
-export default async function Home({params:{lang}}:LangProps) {
+
+export type PageProps = {
+  params:{
+      lang: Locale
+  }
+} 
+
+export default async function Home({params:{lang}}:PageProps) {
   const client = createClient();
   const langDictionary = await getDictionary(lang);
   

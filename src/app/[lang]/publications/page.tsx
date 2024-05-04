@@ -5,15 +5,10 @@ import Gallery from "../components/gallery";
 import HeadlineCard from "../components/headline-card";
 import PublicationListWrapper from "./components/publication-list-wrapper";
 import { PublicationListProps } from "./components/publication-list";
-import { getDictionary, Locale } from "@/app/dictionaries/dictionaries";
+import { getDictionary } from "@/app/dictionaries/dictionaries";
+import { PageProps } from "../page";
 
-export type LangProps = {
-    params:{
-        lang: Locale
-    }
-} 
-
-export default async function Publications({params:{lang}}:LangProps) {
+export default async function Publications({params:{lang}}:PageProps) {
 
     const langDictionary = await getDictionary(lang);
     const client = createClient();
