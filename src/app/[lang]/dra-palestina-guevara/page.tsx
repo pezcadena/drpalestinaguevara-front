@@ -1,5 +1,5 @@
 import { getDictionary } from "@/app/dictionaries/dictionaries";
-import Gallery from "../components/gallery";
+import Carousel from "../components/carousel";
 import HeadlineCard from "../components/headline-card";
 import { PageProps } from "../page";
 import { createClient } from "@/prismicio";
@@ -18,7 +18,7 @@ export default async function DraPalestinaGuevara({params:{lang}}:PageProps){
                 <HeadlineCard
                     titleText={langDictionary.navbar.dra}
                 />
-                <Gallery
+                <Carousel
                     images={gallery}
                 />
             </section>

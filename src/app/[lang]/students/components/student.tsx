@@ -3,7 +3,7 @@ export default function Student(){
     return(
         <article className="w-full rounded bg-white">
             <header className="flex flex-col pt-padding gap-gap px-padding lg:flex-row lg:items-center">
-                <div className="w-32 h-32 relative rounded overflow-hidden">
+                <div className="w-32 h-32 rounded overflow-hidden">
                     <Image
                         alt="Algo"
                         src="/img/placeholder.jpg"

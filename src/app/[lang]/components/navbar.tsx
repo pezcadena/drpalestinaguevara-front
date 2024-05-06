@@ -45,7 +45,7 @@ export default function Navbar({isVisible, onClickLink, langDictionary, lang}:na
         },
         {
             name:langDictionary.navbar.gallery,
-            href: null
+            href: `/${lang}/gallery`
         },
         {
             name:langDictionary.navbar.activities,

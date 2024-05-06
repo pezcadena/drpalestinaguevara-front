@@ -1,5 +1,5 @@
 import { PageDescriptionSlice, TitleSlice } from "../../../prismicio-types";
-import Gallery from "./components/gallery";
+import Carousel from "./components/carousel";
 import HeadlineCard from "./components/headline-card";
 import Subtitle from "./components/subtitle";
 import {createClient} from "@/prismicio";
@@ -42,7 +42,7 @@ export default async function Home({params:{lang}}:PageProps) {
             titleSlice={title}
             subtitle={subtitle}
           />
-          <Gallery
+          <Carousel
             images={images}
           />
       </section>

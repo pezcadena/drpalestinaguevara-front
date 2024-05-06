@@ -1,6 +1,6 @@
 import { getDictionary } from "@/app/dictionaries/dictionaries";
 import { createClient } from "@/prismicio";
-import Gallery from "../components/gallery";
+import Carousel from "../components/carousel";
 import HeadlineCard from "../components/headline-card";
 import { PageProps } from "../page";
 import ResearchList from "./components/research-list";
@@ -28,7 +28,7 @@ export default async function Research({params:{lang}}:PageProps){
                 <HeadlineCard
                     titleText={langDictionary.navbar.research}
                 />
-                <Gallery
+                <Carousel
                     images={gallery}
                 />
             </section>

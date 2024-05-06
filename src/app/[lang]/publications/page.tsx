@@ -1,7 +1,7 @@
 import { createClient } from "@/prismicio";
 import dayjs from "dayjs";
 import ContentIndex from "../components/content-index";
-import Gallery from "../components/gallery";
+import Carousel from "../components/carousel";
 import HeadlineCard from "../components/headline-card";
 import PublicationListWrapper from "./components/publication-list-wrapper";
 import { PublicationListProps } from "./components/publication-list";
@@ -23,7 +23,7 @@ export default async function Publications({params:{lang}}:PageProps) {
                 <HeadlineCard
                     titleText={langDictionary.navbar.publications}
                 />
-                <Gallery
+                <Carousel
                     images={gallery}
                 />
             </section>

@@ -1,12 +1,13 @@
 import { getDictionary } from "@/app/dictionaries/dictionaries";
-import ContentIndex from "../components/content-index";
+import { createClient } from "@/prismicio";
 import Carousel from "../components/carousel";
+import ContentIndex from "../components/content-index";
 import HeadlineCard from "../components/headline-card";
 import { PageProps } from "../page";
-import { createClient } from "@/prismicio";
-import CollaboratorListWrapper from "./components/collaborator-list-wrapper";
+import ResearchListWrapper from "../research/components/research-list-wrapper";
+import GalleryCardListWrapper from "./components/gallery-card-list-wrapper";
 
-export default async function Collaborators({params:{lang}}:PageProps){
+export default async function Gallery({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
     const client = createClient();
     const cites = await client.getAllByType('publication');
@@ -25,7 +26,7 @@ export default async function Collaborators({params:{lang}}:PageProps){
         <div className="flex flex-col gap-gap">
             <section className="flex gap-gap lg:h-[433px] flex-wrap lg:flex-nowrap flex-col-reverse lg:flex-row">
                 <HeadlineCard
-                    titleText={langDictionary.navbar.collaborators}
+                    titleText={langDictionary.navbar.gallery}
                 />
                 <Carousel
                     images={gallery}
@@ -41,7 +42,7 @@ export default async function Collaborators({params:{lang}}:PageProps){
                 <ContentIndex
                     sectionList={researchList.map(research=>research.title)}
                 />
-                <CollaboratorListWrapper/>
+                <GalleryCardListWrapper/>
             </section>
         </div>
     );

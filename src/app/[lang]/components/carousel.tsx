@@ -9,12 +9,12 @@ import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
 import clsx from "clsx";
 
-interface GalleryProps{
+interface CarouselProps{
     images:never[] | Simplify<TitleSliceDefaultItem>[] | undefined
 }
-export default function Gallery({
+export default function Carousel({
     images
-}:GalleryProps){
+}:CarouselProps){
     console.log(images?.length);
     
 

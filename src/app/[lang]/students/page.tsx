@@ -1,6 +1,6 @@
 import { getDictionary } from "@/app/dictionaries/dictionaries";
 import ContentIndex from "../components/content-index";
-import Gallery from "../components/gallery";
+import Carousel from "../components/carousel";
 import HeadlineCard from "../components/headline-card";
 import { PageProps } from "../page";
 import { createClient } from "@/prismicio";
@@ -21,7 +21,7 @@ export default async function Students({params:{lang}}:PageProps){
                 <HeadlineCard
                     titleText={langDictionary.navbar.students}
                 />
-                <Gallery
+                <Carousel
                     images={gallery}
                 />
             </section>
