@@ -33,7 +33,7 @@ export default function Navbar({isVisible, onClickLink, langDictionary, lang}:na
         },
         {
             name:langDictionary.navbar.students,
-            href: null
+            href: `/${lang}/students`
         },
         {
             name:langDictionary.navbar.collaborators,
