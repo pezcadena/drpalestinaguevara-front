@@ -4,7 +4,7 @@ export default function GalleryCard(){
     return(
         <article className="w-full flex flex-col justify-center rounded overflow-hidden bg-white">
             <header>
-                <div className="w-full h-[360px]">
+                <div className="w-full h-full">
                     <Image
                         alt="Algo"
                         src="/img/placeholder.jpg"
