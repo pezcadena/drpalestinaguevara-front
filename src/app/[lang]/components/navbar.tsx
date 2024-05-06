@@ -41,7 +41,7 @@ export default function Navbar({isVisible, onClickLink, langDictionary, lang}:na
         },
         {
             name:langDictionary.navbar.dra,
-            href: null
+            href: `/${lang}/dra-palestina-guevara`
         },
         {
             name:langDictionary.navbar.gallery,
