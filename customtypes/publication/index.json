@@ -36,14 +36,6 @@
           "allowTargetBlank": true,
           "select": null
         }
-      },
-      "category": {
-        "type": "Link",
-        "config": {
-          "label": "Category",
-          "select": "document",
-          "customtypes": ["category"]
-        }
       }
     }
   }

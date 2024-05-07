@@ -1,0 +1,26 @@
+{
+  "id": "thesis_student",
+  "type": "SharedSlice",
+  "name": "ThesisStudent",
+  "description": "ThesisStudent",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "name": {
+          "type": "Text",
+          "config": {
+            "label": "Name",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -5,49 +5,6 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 /**
- * Content for Category documents
- */
-interface CategoryDocumentData {
-  /**
-   * Name field in *Category*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: category.name
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  name: prismic.KeyTextField;
-
-  /**
-   * Content field in *Category*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: category.content
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  content: prismic.ContentRelationshipField;
-}
-
-/**
- * Category document from Prismic
- *
- * - **API ID**: `category`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type CategoryDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<CategoryDocumentData>,
-    "category",
-    Lang
-  >;
-
-/**
  * Content for Footer documents
  */
 interface FooterDocumentData {
@@ -304,17 +261,6 @@ interface PublicationDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   optional_link: prismic.LinkField;
-
-  /**
-   * Category field in *Publication*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: publication.category
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  category: prismic.ContentRelationshipField<"category">;
 }
 
 /**
@@ -333,46 +279,211 @@ export type PublicationDocument<Lang extends string = string> =
     Lang
   >;
 
-type PublicationsGalleryDocumentDataSlicesSlice = ImageSlice;
+type ResearchDocumentDataSlicesSlice = ThesisStudentSlice | CollaboratorSlice;
 
 /**
- * Content for Publications Gallery documents
+ * Content for Research documents
  */
-interface PublicationsGalleryDocumentData {
+interface ResearchDocumentData {
   /**
-   * Slice Zone field in *Publications Gallery*
+   * Cover Image field in *Research*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: research.cover_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover_image: prismic.ImageField<never>;
+
+  /**
+   * Date field in *Research*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: research.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date: prismic.DateField;
+
+  /**
+   * Title field in *Research*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: research.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Research*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: research.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Optional Link field in *Research*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: research.optional_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  optional_link: prismic.LinkToMediaField;
+
+  /**
+   * Slice Zone field in *Research*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: publications_gallery.slices[]
+   * - **API ID Path**: research.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<PublicationsGalleryDocumentDataSlicesSlice>;
+  slices: prismic.SliceZone<ResearchDocumentDataSlicesSlice>;
 }
 
 /**
- * Publications Gallery document from Prismic
+ * Research document from Prismic
  *
- * - **API ID**: `publications_gallery`
+ * - **API ID**: `research`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ResearchDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ResearchDocumentData>,
+    "research",
+    Lang
+  >;
+
+type ResearchPageDocumentDataSlicesSlice = ImageSlice;
+
+/**
+ * Content for Research Page documents
+ */
+interface ResearchPageDocumentData {
+  /**
+   * Slice Zone field in *Research Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: research_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ResearchPageDocumentDataSlicesSlice> /**
+   * Meta Description field in *Research Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: research_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Research Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: research_page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Research Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: research_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Research Page document from Prismic
+ *
+ * - **API ID**: `research_page`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type PublicationsGalleryDocument<Lang extends string = string> =
+export type ResearchPageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
-    Simplify<PublicationsGalleryDocumentData>,
-    "publications_gallery",
+    Simplify<ResearchPageDocumentData>,
+    "research_page",
     Lang
   >;
 
 export type AllDocumentTypes =
-  | CategoryDocument
   | FooterDocument
   | LandingPageDocument
   | PublicationDocument
-  | PublicationsGalleryDocument;
+  | ResearchDocument
+  | ResearchPageDocument;
+
+/**
+ * Primary content in *Collaborator → Primary*
+ */
+export interface CollaboratorSliceDefaultPrimary {
+  /**
+   * Name field in *Collaborator → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collaborator.primary.name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Collaborator Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CollaboratorSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CollaboratorSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Collaborator*
+ */
+type CollaboratorSliceVariation = CollaboratorSliceDefault;
+
+/**
+ * Collaborator Shared Slice
+ *
+ * - **API ID**: `collaborator`
+ * - **Description**: Collaborator
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CollaboratorSlice = prismic.SharedSlice<
+  "collaborator",
+  CollaboratorSliceVariation
+>;
 
 /**
  * Primary content in *Gallery → Items*
@@ -462,6 +573,51 @@ export type PageDescriptionSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *ThesisStudent → Primary*
+ */
+export interface ThesisStudentSliceDefaultPrimary {
+  /**
+   * Name field in *ThesisStudent → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: thesis_student.primary.name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for ThesisStudent Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ThesisStudentSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ThesisStudentSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ThesisStudent*
+ */
+type ThesisStudentSliceVariation = ThesisStudentSliceDefault;
+
+/**
+ * ThesisStudent Shared Slice
+ *
+ * - **API ID**: `thesis_student`
+ * - **Description**: ThesisStudent
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ThesisStudentSlice = prismic.SharedSlice<
+  "thesis_student",
+  ThesisStudentSliceVariation
+>;
+
+/**
  * Primary content in *Headline → Primary*
  */
 export interface TitleSliceDefaultPrimary {
@@ -538,8 +694,6 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      CategoryDocument,
-      CategoryDocumentData,
       FooterDocument,
       FooterDocumentData,
       LandingPageDocument,
@@ -547,10 +701,17 @@ declare module "@prismicio/client" {
       LandingPageDocumentDataSlicesSlice,
       PublicationDocument,
       PublicationDocumentData,
-      PublicationsGalleryDocument,
-      PublicationsGalleryDocumentData,
-      PublicationsGalleryDocumentDataSlicesSlice,
+      ResearchDocument,
+      ResearchDocumentData,
+      ResearchDocumentDataSlicesSlice,
+      ResearchPageDocument,
+      ResearchPageDocumentData,
+      ResearchPageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      CollaboratorSlice,
+      CollaboratorSliceDefaultPrimary,
+      CollaboratorSliceVariation,
+      CollaboratorSliceDefault,
       ImageSlice,
       ImageSliceDefaultItem,
       ImageSliceVariation,
@@ -559,6 +720,10 @@ declare module "@prismicio/client" {
       PageDescriptionSliceDefaultPrimary,
       PageDescriptionSliceVariation,
       PageDescriptionSliceDefault,
+      ThesisStudentSlice,
+      ThesisStudentSliceDefaultPrimary,
+      ThesisStudentSliceVariation,
+      ThesisStudentSliceDefault,
       TitleSlice,
       TitleSliceDefaultPrimary,
       TitleSliceDefaultItem,
