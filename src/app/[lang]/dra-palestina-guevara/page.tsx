@@ -11,7 +11,7 @@ export default async function DraPalestinaGuevara({params:{lang}}:PageProps){
     const client = createClient();
     const cites = await client.getAllByType('publication');
     /* const publicationList: PublicationListProps[]= createPublicationList(); */
-    const gallery = (await client.getSingle('publications_gallery')).data.slices[0]?.items;
+    const carousel = (await client.getSingle('dra_palestina_guevara_page')).data.slices[0]?.items;
     return(
         <main className="flex flex-col gap-gap">
             <section className="flex gap-gap lg:h-[433px] flex-wrap lg:flex-nowrap flex-col-reverse lg:flex-row">
@@ -19,7 +19,7 @@ export default async function DraPalestinaGuevara({params:{lang}}:PageProps){
                     titleText={langDictionary.navbar.dra}
                 />
                 <Carousel
-                    images={gallery}
+                    images={carousel}
                 />
             </section>
             <section className="

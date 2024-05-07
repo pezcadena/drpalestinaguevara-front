@@ -11,7 +11,7 @@ export default async function Collaborators({params:{lang}}:PageProps){
     const client = createClient();
     const cites = await client.getAllByType('publication');
     /* const publicationList: PublicationListProps[]= createPublicationList(); */
-    const gallery = (await client.getSingle('publications_gallery')).data.slices[0]?.items;
+    const carousel = (await client.getSingle('collaborators_page')).data.slices[0]?.items;
     const researchList = [
         {
             title:"2024"
@@ -28,7 +28,7 @@ export default async function Collaborators({params:{lang}}:PageProps){
                     titleText={langDictionary.navbar.collaborators}
                 />
                 <Carousel
-                    images={gallery}
+                    images={carousel}
                 />
             </section>
             <section className="
