@@ -19,7 +19,6 @@ export default async function Home({params:{lang}}:PageProps) {
   
   const page = await client.getSingle('landing_page',{
     lang: lang == 'en' ? 'en-us':'es-mx',
-    ref:'ZjqKbREAACAARejn'
   });
   const title = page.data.slices[0] as TitleSlice;
   const subtitle = page.data.slices[0] as TitleSlice;
@@ -35,7 +34,6 @@ export default async function Home({params:{lang}}:PageProps) {
       }
     ],
     limit:6,
-    ref:'ZjqKbREAACAARejn'
   });
 
   return (
