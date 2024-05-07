@@ -12,7 +12,9 @@ export default async function Publications({params:{lang}}:PageProps) {
 
     const langDictionary = await getDictionary(lang);
     const client = createClient();
-    const cites = await client.getAllByType('publication');
+    const cites = await client.getAllByType('publication', {
+        ref:'ZjqKbREAACAARejn'
+    });
     const publicationList: PublicationListProps[]= createPublicationList();
     const carousel = (await client.getSingle('publications_page')).data.slices[0]?.items;
 
