@@ -18,7 +18,8 @@ export default async function Home({params:{lang}}:PageProps) {
   const langDictionary = await getDictionary(lang);
   
   const page = await client.getSingle('landing_page',{
-    lang: lang == 'en' ? 'en-us':'es-mx'
+    lang: lang == 'en' ? 'en-us':'es-mx',
+    ref:'ZjqKbREAACAARejn'
   });
   const title = page.data.slices[0] as TitleSlice;
   const subtitle = page.data.slices[0] as TitleSlice;
@@ -33,7 +34,8 @@ export default async function Home({params:{lang}}:PageProps) {
         direction:'desc'
       }
     ],
-    limit:6
+    limit:6,
+    ref:'ZjqKbREAACAARejn'
   });
 
   return (
