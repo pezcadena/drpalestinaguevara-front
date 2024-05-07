@@ -33,6 +33,7 @@ export default async function Home({params:{lang}}:PageProps) {
         direction:'desc'
       }
     ],
+    limit:6
   });
 
   return (
@@ -62,14 +63,11 @@ export default async function Home({params:{lang}}:PageProps) {
         <div className="flex flex-wrap -m-mitad-gap">
           {
             recentPublications.map(document=>
-              <div 
-                className="grow lg:basis-1/3 p-mitad-gap"
-                key={document.id}
-              >
+              
                 <NewContentWrapper
                   document={document}
+                  key={document.id}
                 />
-              </div>
             )
           }
         </div>
@@ -77,3 +75,9 @@ export default async function Home({params:{lang}}:PageProps) {
     </div>
   );
 }
+
+{/* <div 
+                className="grow lg:basis-1/2 p-mitad-gap"
+                key={document.id}
+              >
+              </div> */}

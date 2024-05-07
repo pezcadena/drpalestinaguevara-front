@@ -332,13 +332,13 @@ interface ResearchDocumentData {
   /**
    * Optional Link field in *Research*
    *
-   * - **Field Type**: Link to Media
+   * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: research.optional_link
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  optional_link: prismic.LinkToMediaField;
+  optional_link: prismic.LinkField;
 
   /**
    * Slice Zone field in *Research*

@@ -1,5 +1,6 @@
 export enum DocumentTypeEnum{
     landing_page="landing_page",
     category="category",
-    publication = "publication"
+    publication = "publication",
+    research="research"
 }

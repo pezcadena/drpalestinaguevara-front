@@ -48,7 +48,7 @@
         "config": {
           "label": "Optional Link",
           "placeholder": "",
-          "select": "media"
+          "select": null
         }
       },
       "slices": {

@@ -1,26 +1,26 @@
 import { getDictionary } from "@/app/dictionaries/dictionaries";
 import { createClient } from "@/prismicio";
 import Carousel from "../components/carousel";
+import ContentIndex from "../components/content-index";
 import HeadlineCard from "../components/headline-card";
 import { PageProps } from "../page";
-import ResearchList from "./components/research-list";
 import ResearchListWrapper from "./components/research-list-wrapper";
-import ContentIndex from "../components/content-index";
+import { createContentSectionList } from "@/app/functions/create-content-section-list";
+import { ResearchDocument } from "../../../../prismicio-types";
 
 export default async function Research({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
     const client = createClient();
-    const cites = await client.getAllByType('publication');
-    /* const publicationList: PublicationListProps[]= createPublicationList(); */
-    const gallery = (await client.getSingle('publications_gallery')).data.slices[0]?.items;
-    const researchList = [
-        {
-            title:"2024"
-        },
-        {
-            title:"2023"
-        }
-    ]
+    const carousel = (await client.getSingle('research_page')).data.slices[0]?.items;
+    const sectionList = createContentSectionList<ResearchDocument<string>>(await client.getAllByType('research',{
+        orderings:[
+          {
+            field:'my.research.date',
+            direction:'desc'
+          }
+        ],
+        lang: lang == 'en' ? 'en-us':'es-mx'
+      }));
 
     return (
         <div className="flex flex-col gap-gap">
@@ -29,20 +29,18 @@ export default async function Research({params:{lang}}:PageProps){
                     titleText={langDictionary.navbar.research}
                 />
                 <Carousel
-                    images={gallery}
+                    images={carousel}
                 />
             </section>
             <section className="
                 flex flex-col lg:flex-row-reverse relative gap-gap
             ">
-                {/* 
-                <PublicationListWrapper
-                    publicationList={publicationList}
-                /> */}
                 <ContentIndex
-                    sectionList={researchList.map(research=>research.title)}
+                    sectionList={sectionList.map(section=>section.title)}
                 />
-                <ResearchListWrapper/>
+                <ResearchListWrapper
+                    sectionList={sectionList}
+                />
             </section>
         </div>
     );

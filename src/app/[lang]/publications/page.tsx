@@ -14,7 +14,6 @@ export default async function Publications({params:{lang}}:PageProps) {
     const client = createClient();
     const cites = await client.getAllByType('publication');
     const publicationList: PublicationListProps[]= createPublicationList();
-    const gallery = (await client.getSingle('publications_gallery')).data.slices[0]?.items;
 
 
     return (
@@ -23,9 +22,9 @@ export default async function Publications({params:{lang}}:PageProps) {
                 <HeadlineCard
                     titleText={langDictionary.navbar.publications}
                 />
-                <Carousel
+                {/* <Carousel
                     images={gallery}
-                />
+                /> */}
             </section>
             <section className="
                 flex flex-col lg:flex-row-reverse relative gap-gap
