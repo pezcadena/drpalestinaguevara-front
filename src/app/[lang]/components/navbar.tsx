@@ -53,7 +53,7 @@ export default function Navbar({isVisible, onClickLink, langDictionary, lang}:na
         },
         {
             name:langDictionary.navbar.contact,
-            href: null
+            href: `/${lang}/contact`
         },
         {
             name:langDictionary.navbar.changeLang,
