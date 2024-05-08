@@ -823,6 +823,71 @@ export type ResearchPageDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Student documents
+ */
+interface StudentDocumentData {
+  /**
+   * Name field in *Student*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: student.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Institution field in *Student*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: student.institution
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  institution: prismic.KeyTextField;
+
+  /**
+   * Description field in *Student*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: student.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Profile Photo field in *Student*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: student.profile_photo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  profile_photo: prismic.ImageField<never>;
+}
+
+/**
+ * Student document from Prismic
+ *
+ * - **API ID**: `student`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type StudentDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<StudentDocumentData>,
+    "student",
+    Lang
+  >;
+
 type StudentsPageDocumentDataSlicesSlice = ImageSlice;
 
 /**
@@ -900,6 +965,7 @@ export type AllDocumentTypes =
   | PublicationsPageDocument
   | ResearchDocument
   | ResearchPageDocument
+  | StudentDocument
   | StudentsPageDocument;
 
 /**
@@ -1187,6 +1253,8 @@ declare module "@prismicio/client" {
       ResearchPageDocument,
       ResearchPageDocumentData,
       ResearchPageDocumentDataSlicesSlice,
+      StudentDocument,
+      StudentDocumentData,
       StudentsPageDocument,
       StudentsPageDocumentData,
       StudentsPageDocumentDataSlicesSlice,
