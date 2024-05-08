@@ -14,12 +14,14 @@ export type PageProps = {
 } 
 
 export default async function Home({params:{lang}}:PageProps) {
+  
   const client = createClient();
+  const masterRef = await client.getMasterRef();
   const langDictionary = await getDictionary(lang);
   
   const page = await client.getSingle('landing_page',{
     lang: lang == 'en' ? 'en-us':'es-mx',
-    ref:'ZjqKbREAACAARejn'
+    ref:masterRef.ref
   });
   const title = page.data.slices[0] as TitleSlice;
   const subtitle = page.data.slices[0] as TitleSlice;
@@ -35,7 +37,7 @@ export default async function Home({params:{lang}}:PageProps) {
       }
     ],
     limit:6,
-    ref:'ZjqKbREAACAARejn'
+    ref:masterRef.ref
   });
 
   return (

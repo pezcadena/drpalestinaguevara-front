@@ -8,10 +8,9 @@ import CollaboratorListWrapper from "./components/collaborator-list-wrapper";
 
 export default async function Collaborators({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
+    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const cites = await client.getAllByType('publication');
-    /* const publicationList: PublicationListProps[]= createPublicationList(); */
-    const carousel = (await client.getSingle('collaborators_page')).data.slices[0]?.items;
+    const carousel = (await client.getSingle('collaborators_page',{ref:masterRef})).data.slices[0]?.items;
     const researchList = [
         {
             title:"2024"

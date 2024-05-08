@@ -3,15 +3,14 @@ import { createClient } from "@/prismicio";
 import Carousel from "../components/carousel";
 import ContentIndex from "../components/content-index";
 import HeadlineCard from "../components/headline-card";
-import { PageProps } from "../page";
-import ResearchListWrapper from "../research/components/research-list-wrapper";
 import GalleryCardListWrapper from "../gallery/components/gallery-card-list-wrapper";
+import { PageProps } from "../page";
 
 export default async function Activities({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
-    const client = createClient();
-    const cites = await client.getAllByType('publication');
-    /* const publicationList: PublicationListProps[]= createPublicationList(); */
+    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
+    
+    const client = createClient({ref:masterRef});
     const carousel = (await client.getSingle('activities_page')).data.slices[0]?.items;
     const researchList = [
         {
