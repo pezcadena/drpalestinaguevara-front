@@ -9,10 +9,9 @@ import GalleryCardListWrapper from "./components/gallery-card-list-wrapper";
 
 export default async function Gallery({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
+    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const cites = await client.getAllByType('publication');
-    /* const publicationList: PublicationListProps[]= createPublicationList(); */
-    const carousel = (await client.getSingle('gallery_page')).data.slices[0]?.items;
+    const carousel = (await client.getSingle('gallery_page',{ref:masterRef})).data.slices[0]?.items;
     const researchList = [
         {
             title:"2024"

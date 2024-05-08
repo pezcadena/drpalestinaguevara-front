@@ -8,19 +8,10 @@ import Map from "./components/map";
 
 export default async function Contact({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
+    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const cites = await client.getAllByType('publication');
-    /* const publicationList: PublicationListProps[]= createPublicationList(); */
-    const carousel = (await client.getSingle('contact_page')).data.slices[0]?.items;
-    const researchList = [
-        {
-            title:"2024"
-        },
-        {
-            title:"2023"
-        }
-    ];
-    const footerInfo = (await client.getSingle('footer')).data;
+    const carousel = (await client.getSingle('contact_page',{ref:masterRef})).data.slices[0]?.items;
+    const footerInfo = (await client.getSingle('footer',{ref:masterRef})).data;
 
     return (
         <div className="flex flex-col gap-gap">

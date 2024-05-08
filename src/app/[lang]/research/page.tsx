@@ -10,11 +10,9 @@ import { ResearchDocument } from "../../../../prismicio-types";
 
 export default async function Research({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
+    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const masterRef = await client.getMasterRef();
-    console.log(masterRef);
-    
-    const carousel = (await client.getSingle('research_page',{ref:masterRef.ref})).data.slices[0]?.items;
+    const carousel = (await client.getSingle('research_page',{ref:masterRef})).data.slices[0]?.items;
     const sectionList = createContentSectionList<ResearchDocument<string>>(await client.getAllByType('research',{
         orderings:[
           {
@@ -23,7 +21,7 @@ export default async function Research({params:{lang}}:PageProps){
           }
         ],
         lang: lang == 'en' ? 'en-us':'es-mx',
-        ref:masterRef.ref
+        ref:masterRef
       }));
 
     return (

@@ -14,8 +14,9 @@ export default async function Footer(
         langDictionary
     }: FooterProps
 ){
+    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const footerInfo = (await client.getSingle('footer')).data;
+    const footerInfo = (await client.getSingle('footer',{ref:masterRef})).data;
 
 
     return(

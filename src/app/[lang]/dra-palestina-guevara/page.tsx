@@ -8,10 +8,9 @@ import Card from "../components/card";
 
 export default async function DraPalestinaGuevara({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
+    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const cites = await client.getAllByType('publication');
-    /* const publicationList: PublicationListProps[]= createPublicationList(); */
-    const carousel = (await client.getSingle('dra_palestina_guevara_page')).data.slices[0]?.items;
+    const carousel = (await client.getSingle('dra_palestina_guevara_page',{ref:masterRef})).data.slices[0]?.items;
     return(
         <main className="flex flex-col gap-gap">
             <section className="flex gap-gap lg:h-[433px] flex-wrap lg:flex-nowrap flex-col-reverse lg:flex-row">

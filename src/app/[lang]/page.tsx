@@ -14,14 +14,13 @@ export type PageProps = {
 } 
 
 export default async function Home({params:{lang}}:PageProps) {
-  
+  const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
   const client = createClient();
-  const masterRef = await client.getMasterRef();
   const langDictionary = await getDictionary(lang);
   
   const page = await client.getSingle('landing_page',{
     lang: lang == 'en' ? 'en-us':'es-mx',
-    ref:masterRef.ref
+    ref:masterRef
   });
   const title = page.data.slices[0] as TitleSlice;
   const subtitle = page.data.slices[0] as TitleSlice;
@@ -37,7 +36,7 @@ export default async function Home({params:{lang}}:PageProps) {
       }
     ],
     limit:6,
-    ref:masterRef.ref
+    ref:masterRef
   });
 
   return (

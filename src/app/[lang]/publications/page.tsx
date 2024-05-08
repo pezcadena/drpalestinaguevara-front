@@ -11,8 +11,8 @@ import { PageProps } from "../page";
 export default async function Publications({params:{lang}}:PageProps) {
 
     const langDictionary = await getDictionary(lang);
-    const client = createClient({ref:'ZjqKbREAACAARejn'});
-    const masterRef = (await client.getMasterRef()).ref;
+    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
+    const client = createClient();
     const cites = await client.getAllByType('publication',{ref:masterRef});
     const publicationList: PublicationListProps[]= createPublicationList();
     const carousel = (await client.getSingle('publications_page',{ref:masterRef})).data.slices[0]?.items;

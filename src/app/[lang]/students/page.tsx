@@ -9,11 +9,9 @@ import StudentList from "./components/student-list";
 
 export default async function Students({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
+    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const cites = await client.getAllByType('publication');
-    /* const publicationList: PublicationListProps[]= createPublicationList(); */
-    const carousel = (await client.getSingle('students_page')).data.slices[0]?.items;
-    
+    const carousel = (await client.getSingle('students_page',{ref:masterRef})).data.slices[0]?.items;
 
     return (
         <div className="flex flex-col gap-gap">

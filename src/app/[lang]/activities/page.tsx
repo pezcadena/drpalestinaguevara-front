@@ -10,8 +10,8 @@ export default async function Activities({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
     const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     
-    const client = createClient({ref:masterRef});
-    const carousel = (await client.getSingle('activities_page')).data.slices[0]?.items;
+    const client = createClient();
+    const carousel = (await client.getSingle('activities_page',{ref:masterRef})).data.slices[0]?.items;
     const researchList = [
         {
             title:"2024"
