@@ -11,12 +11,12 @@ export default function Student({
     return(
         <article className="w-full rounded bg-white">
             <header className="flex flex-col pt-padding gap-gap px-padding lg:flex-row lg:items-center">
-                <div className="w-32 h-32 rounded overflow-hidden">
+                {student.data.profile_photo.url && <div className="w-32 h-32 rounded overflow-hidden">
                     <PrismicNextImage 
                         field={student.data.profile_photo} 
                         className="w-full h-full object-cover"
                     />
-                </div>
+                </div>}
                 <div className="py-gap w-full lg:w-auto">
                     <h3
                         className="text-primary font-serif text-h2-bold lg:text-h3-bold-desktop"

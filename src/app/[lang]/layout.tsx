@@ -7,6 +7,7 @@ import Footer from "./components/footer";
 import Header from "./components/header";
 import { getDictionary } from "../dictionaries/dictionaries";
 import "yet-another-react-lightbox/styles.css";
+export const fetchCache = 'force-no-store';
 
 const inter = Inter({ subsets: ["latin"] });
 const quattrocento = Quattrocento({

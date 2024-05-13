@@ -5,13 +5,13 @@ interface ResearchListWrapperProps{
     sectionList:ResearchListProps[] 
 }
 export default function ResearchListWrapper({
-    sectionList: researchListProps
+    sectionList
 }:ResearchListWrapperProps){
     return(
         <section className="flex flex-col gap-gap">
             <ScrollSpy scrollThrottle={100} useBoxMethod={false}>
             {
-                researchListProps.map(section=>
+                sectionList.map(section=>
                     <ResearchList
                         key={section.title}
                         title={section.title}

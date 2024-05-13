@@ -1,18 +1,20 @@
 import { StudentDocument } from "../../../../../prismicio-types";
 import Subtitle from "../../components/subtitle";
-import Student from "./student";
-export interface StudentListProps{
+import Student from "../../students/components/student";
+export interface CollaboratorListProps{
     title: string,
-    contentList: StudentDocument<string>[]
+    contentList: StudentDocument<string>[],
+    year: number
 }
 
-export default function StudentList({
+export default function CollaboratorList({
     title,
-    contentList
-}:StudentListProps){
+    contentList,
+    year
+}:CollaboratorListProps){
     return(
         <section className="flex flex-col gap-gap mb-gap"
-        id={title}
+        id={year.toString()}
         >
             <Subtitle
                 label={title}

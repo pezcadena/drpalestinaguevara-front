@@ -69,6 +69,93 @@ export type ActivitiesPageDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Collaborator documents
+ */
+interface CollaboratorDocumentData {
+  /**
+   * Name field in *Collaborator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collaborator.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Institution field in *Collaborator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collaborator.institution
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  institution: prismic.KeyTextField;
+
+  /**
+   * Description field in *Collaborator*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collaborator.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Profile Photo field in *Collaborator*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collaborator.profile_photo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  profile_photo: prismic.ImageField<never>;
+
+  /**
+   * Initial Date (Optional) field in *Collaborator*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collaborator.initial_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  initial_date: prismic.DateField;
+
+  /**
+   * Final Date field in *Collaborator*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collaborator.final_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  final_date: prismic.DateField;
+}
+
+/**
+ * Collaborator document from Prismic
+ *
+ * - **API ID**: `collaborator`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CollaboratorDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<CollaboratorDocumentData>,
+    "collaborator",
+    Lang
+  >;
+
 type CollaboratorsPageDocumentDataSlicesSlice = ImageSlice;
 
 /**
@@ -955,6 +1042,7 @@ export type StudentsPageDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | ActivitiesPageDocument
+  | CollaboratorDocument
   | CollaboratorsPageDocument
   | ContactPageDocument
   | DraPalestinaGuevaraPageDocument
@@ -1225,6 +1313,8 @@ declare module "@prismicio/client" {
       ActivitiesPageDocument,
       ActivitiesPageDocumentData,
       ActivitiesPageDocumentDataSlicesSlice,
+      CollaboratorDocument,
+      CollaboratorDocumentData,
       CollaboratorsPageDocument,
       CollaboratorsPageDocumentData,
       CollaboratorsPageDocumentDataSlicesSlice,

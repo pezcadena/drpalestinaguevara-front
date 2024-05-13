@@ -8,7 +8,7 @@ export default function StudentListWrapper({
     sectionList
 }:StudentListWrapperProps){
     return(
-        <section className="flex flex-col gap-gap">
+        <section className="flex flex-col">
             {
                 sectionList.map(section=>
                     <StudentList

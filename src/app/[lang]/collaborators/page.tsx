@@ -5,20 +5,22 @@ import HeadlineCard from "../components/headline-card";
 import { PageProps } from "../page";
 import { createClient } from "@/prismicio";
 import CollaboratorListWrapper from "./components/collaborator-list-wrapper";
+import { CollaboratorDocument } from "../../../../prismicio-types";
+import dayjs from "dayjs";
 
 export default async function Collaborators({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
-    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const carousel = (await client.getSingle('collaborators_page',{ref:masterRef})).data.slices[0]?.items;
-    const researchList = [
-        {
-            title:"2024"
-        },
-        {
-            title:"2023"
-        }
-    ]
+    const carousel = (await client.getSingle('collaborators_page')).data.slices[0]?.items;
+    const sectionList = createContentSectionList(await client.getAllByType('collaborator',{
+        orderings:[
+          {
+            field:'my.collaborator.date',
+            direction:'desc'
+          }
+        ],
+        lang: lang == 'en' ? 'en-us':'es-mx',
+      }));
 
     return (
         <div className="flex flex-col gap-gap">
@@ -33,15 +35,46 @@ export default async function Collaborators({params:{lang}}:PageProps){
             <section className="
                 flex flex-col lg:flex-row-reverse relative gap-gap
             ">
-                {/* 
-                <PublicationListWrapper
-                    publicationList={publicationList}
-                /> */}
                 <ContentIndex
-                    sectionList={researchList.map(research=>research.title)}
+                    sectionList={sectionList.map(section=>section.title)}
                 />
-                <CollaboratorListWrapper/>
+                <CollaboratorListWrapper
+                    sectionList={sectionList as any}
+                />
             </section>
         </div>
     );
+}
+
+function createContentSectionList(
+        res: CollaboratorDocument<string>[]
+    ) {
+    const sectionList: {title:string, contentList: CollaboratorDocument<string>[], year:number}[] = [];
+    res.forEach(content => {
+        const year = dayjs(content.data.final_date).year();
+        const initialYear = dayjs(content.data.initial_date).year() ?? null;
+        const contentListNueva = sectionList[year]?.contentList ?? [];
+
+        contentListNueva.push(content);
+        sectionList[year] = {
+            title: initialYear ? `${initialYear} - ${year}`:year.toString(),
+            contentList: contentListNueva,
+            year
+        };
+    });
+
+    sectionList.sort((a, b) => {
+        let fechaA = a.year;
+        let fechaB = b.year;
+      
+        if (fechaA < fechaB) {
+          return 1;
+        }
+        if (fechaA > fechaB) {
+          return -1;
+        }
+        return 0;
+    });
+
+    return sectionList;
 }

@@ -3,7 +3,7 @@
 import React from "react";
 
 export interface ContentIndexProps{
-    sectionList: string[]
+    sectionList: string[],
 }
 
 export default function ContentIndex(
@@ -37,7 +37,7 @@ export default function ContentIndex(
                     sectionList.map(section=>
                         <a  
                             key={section}
-                            href={'#'+section}
+                            href={'#'+ splitSection(section)}
                             onClick={
                                 (e)=> onProgress(e)
                             }
@@ -64,4 +64,8 @@ export default function ContentIndex(
             </div>
         </nav>
     )
+}
+
+function splitSection(title:string){
+    return title.split(" - ")[1] ?? title;
 }

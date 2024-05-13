@@ -9,11 +9,12 @@ import { StudentDocument } from "../../../../prismicio-types";
 
 export default async function Students({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
-    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const carousel = (await client.getSingle('students_page',{ref:masterRef})).data.slices[0]?.items;
+    const carousel = (await client.getSingle('students_page')).data.slices[0]?.items;
     
-    const sectionList = (await client.getAllByType('student',{ref:masterRef})).reduce<{title:string,contentList:StudentDocument<string>[]}[]>((prev,curr)=>{
+    const sectionList = (await client.getAllByType('student',{
+        lang: lang == 'en' ? 'en-us':'es-mx',
+    })).reduce<{title:string,contentList:StudentDocument<string>[]}[]>((prev,curr)=>{
         let tagExistente = prev.find(objeto => objeto.title === curr.tags[0]);
 
         if (tagExistente) {
