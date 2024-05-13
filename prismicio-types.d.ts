@@ -286,7 +286,10 @@ export type ContactPageDocument<Lang extends string = string> =
     Lang
   >;
 
-type DraPalestinaGuevaraPageDocumentDataSlicesSlice = ImageSlice;
+type DraPalestinaGuevaraPageDocumentDataSlicesSlice =
+  | CareerSlice
+  | PageDescriptionSlice
+  | ImageSlice;
 
 /**
  * Content for Dra Palestina Guevara Page documents
@@ -756,7 +759,7 @@ export type PublicationsPageDocument<Lang extends string = string> =
     Lang
   >;
 
-type ResearchDocumentDataSlicesSlice = ThesisStudentSlice | CollaboratorSlice;
+type ResearchDocumentDataSlicesSlice = never;
 
 /**
  * Content for Research documents
@@ -1057,49 +1060,46 @@ export type AllDocumentTypes =
   | StudentsPageDocument;
 
 /**
- * Primary content in *Collaborator → Primary*
+ * Primary content in *Career → Items*
  */
-export interface CollaboratorSliceDefaultPrimary {
+export interface CareerSliceDefaultItem {
   /**
-   * Name field in *Collaborator → Primary*
+   * Description field in *Career → Items*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: collaborator.primary.name
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **API ID Path**: career.items[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  name: prismic.KeyTextField;
+  description: prismic.RichTextField;
 }
 
 /**
- * Default variation for Collaborator Slice
+ * Default variation for Career Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type CollaboratorSliceDefault = prismic.SharedSliceVariation<
+export type CareerSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<CollaboratorSliceDefaultPrimary>,
-  never
+  Record<string, never>,
+  Simplify<CareerSliceDefaultItem>
 >;
 
 /**
- * Slice variation for *Collaborator*
+ * Slice variation for *Career*
  */
-type CollaboratorSliceVariation = CollaboratorSliceDefault;
+type CareerSliceVariation = CareerSliceDefault;
 
 /**
- * Collaborator Shared Slice
+ * Career Shared Slice
  *
- * - **API ID**: `collaborator`
- * - **Description**: Collaborator
+ * - **API ID**: `career`
+ * - **Description**: Career
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type CollaboratorSlice = prismic.SharedSlice<
-  "collaborator",
-  CollaboratorSliceVariation
->;
+export type CareerSlice = prismic.SharedSlice<"career", CareerSliceVariation>;
 
 /**
  * Primary content in *Gallery → Items*
@@ -1186,51 +1186,6 @@ type PageDescriptionSliceVariation = PageDescriptionSliceDefault;
 export type PageDescriptionSlice = prismic.SharedSlice<
   "page_description",
   PageDescriptionSliceVariation
->;
-
-/**
- * Primary content in *ThesisStudent → Primary*
- */
-export interface ThesisStudentSliceDefaultPrimary {
-  /**
-   * Name field in *ThesisStudent → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: thesis_student.primary.name
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  name: prismic.KeyTextField;
-}
-
-/**
- * Default variation for ThesisStudent Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ThesisStudentSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<ThesisStudentSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *ThesisStudent*
- */
-type ThesisStudentSliceVariation = ThesisStudentSliceDefault;
-
-/**
- * ThesisStudent Shared Slice
- *
- * - **API ID**: `thesis_student`
- * - **Description**: ThesisStudent
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ThesisStudentSlice = prismic.SharedSlice<
-  "thesis_student",
-  ThesisStudentSliceVariation
 >;
 
 /**
@@ -1349,10 +1304,10 @@ declare module "@prismicio/client" {
       StudentsPageDocumentData,
       StudentsPageDocumentDataSlicesSlice,
       AllDocumentTypes,
-      CollaboratorSlice,
-      CollaboratorSliceDefaultPrimary,
-      CollaboratorSliceVariation,
-      CollaboratorSliceDefault,
+      CareerSlice,
+      CareerSliceDefaultItem,
+      CareerSliceVariation,
+      CareerSliceDefault,
       ImageSlice,
       ImageSliceDefaultItem,
       ImageSliceVariation,
@@ -1361,10 +1316,6 @@ declare module "@prismicio/client" {
       PageDescriptionSliceDefaultPrimary,
       PageDescriptionSliceVariation,
       PageDescriptionSliceDefault,
-      ThesisStudentSlice,
-      ThesisStudentSliceDefaultPrimary,
-      ThesisStudentSliceVariation,
-      ThesisStudentSliceDefault,
       TitleSlice,
       TitleSliceDefaultPrimary,
       TitleSliceDefaultItem,

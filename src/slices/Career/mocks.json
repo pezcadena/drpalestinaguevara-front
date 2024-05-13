@@ -1,0 +1,28 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"description",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Excepteur incididunt nisi culpa dolore laborum excepteur cupidatat excepteur veniam est tempor. Cupidatat sint mollit tempor tempor irure."
+									}
+								}
+							]
+						}
+					]
+				]
+			}
+		]
+	}
+]

@@ -7,7 +7,7 @@ export default function Card({
 }:CardProps){
     return (
         <article
-            className="bg-white rounded p-padding text-justify"
+            className="bg-white rounded p-padding text-justify flex flex-col gap-gap"
         >
             {children}
         </article>

@@ -5,12 +5,31 @@ import { PageProps } from "../page";
 import { createClient } from "@/prismicio";
 import Subtitle from "../components/subtitle";
 import Card from "../components/card";
+import { Simplify, ImageSliceDefaultItem, CareerSliceDefaultItem, PublicationDocument } from "../../../../prismicio-types";
+import { PrismicRichText } from "@prismicio/react";
+import Publication from "../publications/components/publication";
+import Link from "next/link";
 
 export default async function DraPalestinaGuevara({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
-    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const carousel = (await client.getSingle('dra_palestina_guevara_page',{ref:masterRef})).data.slices[0]?.items;
+    const page = (await client.getSingle('dra_palestina_guevara_page',{
+        lang: lang == 'en' ? 'en-us':'es-mx',
+    })).data
+    const carousel: Simplify<ImageSliceDefaultItem>[] = (page.slices.find(value=>value.slice_type=="image")?.items) as Simplify<ImageSliceDefaultItem>[] ?? [];
+    const description = page.slices.find(value=>value.slice_type=="page_description");
+    const careerList: Simplify<CareerSliceDefaultItem>[] = (page.slices.find(value=>value.slice_type=="career")?.items) as Simplify<CareerSliceDefaultItem>[] ?? [];
+    const recentPublications: PublicationDocument<string>[] = await client.getAllByTag('Publication',{
+        orderings:[
+          {
+            field:'my.publication.date',
+            direction:'desc'
+          }
+        ],
+        limit:5,
+      });
+    
+    
     return(
         <main className="flex flex-col gap-gap">
             <section className="flex gap-gap lg:h-[433px] flex-wrap lg:flex-nowrap flex-col-reverse lg:flex-row">
@@ -24,44 +43,46 @@ export default async function DraPalestinaGuevara({params:{lang}}:PageProps){
             <section className="
                 flex flex-col lg:flex-row gap-gap flex-wrap lg:flex-nowrap
             ">
-                <Subtitle
-                    label="Título"
-                />
                 <Card>
-                    <p>
-                    Párrafo de la biografia. lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales. Quisque sagittis orci ut diam condimentum, vel euismod erat placerat. In iaculis arcu eros, eget tempus orci facilisis id.
-                    </p>
+                    <PrismicRichText
+                        field={description?.primary.description}
+                    />
                 </Card>
             </section>
             <section className="flex flex-col gap-gap">
                 <Subtitle
-                    label={langDictionary.navbar.publications}
+                    label={langDictionary.dra.career}
                 />
-                <Card>
-                    <p>
-                    Publicaciones solo de la dra
-                    </p>
-                </Card>
-                <Card>
-                    <p>
-                    Publicaciones solo de la dra
-                    </p>
-                </Card>
-                <Card>
-                    <p>
-                    Publicaciones solo de la dra
-                    </p>
-                </Card>
-                <Card>
-                    <p>
-                    Publicaciones solo de la dra
-                    </p>
-                </Card>
-                <Card>
-                    <p>
-                    Publicaciones solo de la dra
-                    </p>
-                </Card>
+                {careerList.map((career)=>
+                    <Card
+                        key={career.description[0]?.type}
+                    >
+                        <PrismicRichText
+                            field={career.description}
+                        />
+                    </Card>
+                )}
+            </section>
+            <section className="flex flex-col gap-gap">
+                <Subtitle
+                    label={langDictionary.lastPublicationsTitle}
+                />
+                {
+                    recentPublications.map(publication=>
+                        <Publication
+                            key={publication
+                                .id
+                            }
+                            document={publication}
+                        />
+                    )
+                }
+                <Link 
+                    className="bg-secondary rounded p-gap text-white transition-all ease-in-out lg:duration-300 hover:bg-sky-700 text-center"
+                    href={`/${lang}/publications`}
+                >
+                    Ver más
+                </Link>
             </section>
         </main>
     )

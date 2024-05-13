@@ -11,6 +11,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "career": {
+              "type": "SharedSlice"
+            },
+            "page_description": {
+              "type": "SharedSlice"
+            },
             "image": {
               "type": "SharedSlice"
             }

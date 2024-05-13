@@ -17,5 +17,8 @@
         "phone":"Phone",
         "email":"Email",
         "address":"Address"
+    },
+    "dra":{
+        "career":"Career"
     }
 }

@@ -1,7 +1,6 @@
 import { LangDictionary } from "@/app/dictionaries/dictionaries";
 import { createClient } from "@/prismicio";
 import Image from "next/image";
-import ContactCards from "../contact/components/contact-cards";
 import ContactCardsFooterWrapper from "./contact-cards-footer-wrapper";
 
 interface FooterProps{
@@ -14,9 +13,8 @@ export default async function Footer(
         langDictionary
     }: FooterProps
 ){
-    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const footerInfo = (await client.getSingle('footer',{ref:masterRef})).data;
+    const footerInfo = (await client.getSingle('footer')).data;
 
 
     return(
