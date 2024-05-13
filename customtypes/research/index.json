@@ -55,7 +55,14 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "thesis_student": {
+              "type": "SharedSlice"
+            },
+            "collaborator": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     }
