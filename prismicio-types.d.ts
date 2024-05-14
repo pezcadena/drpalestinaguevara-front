@@ -70,6 +70,100 @@ export type ActivitiesPageDocument<Lang extends string = string> =
   >;
 
 /**
+ * Content for Activity documents
+ */
+interface ActivityDocumentData {
+  /**
+   * Photo field in *Activity*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: activity.photo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  photo: prismic.ImageField<never>;
+
+  /**
+   * Title (Optional) field in *Activity*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: activity.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Short Description (Optional) field in *Activity*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: activity.short_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  short_description: prismic.KeyTextField;
+
+  /**
+   * Link External Photo (Optional) field in *Activity*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: activity.link_external_photo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link_external_photo: prismic.LinkField;
+
+  /**
+   * Full Date field in *Activity*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: activity.full_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  full_date: prismic.TimestampField;
+}
+
+/**
+ * Activity document from Prismic
+ *
+ * - **API ID**: `activity`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ActivityDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ActivityDocumentData>,
+    "activity",
+    Lang
+  >;
+
+interface ActvityDocumentData {}
+
+/**
+ * Actvity document from Prismic
+ *
+ * - **API ID**: `actvity`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ActvityDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ActvityDocumentData>,
+    "actvity",
+    Lang
+  >;
+
+/**
  * Content for Collaborator documents
  */
 interface CollaboratorDocumentData {
@@ -572,6 +666,71 @@ export type GalleryPageDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for GalleryPhoto documents
+ */
+interface GalleryphotoDocumentData {
+  /**
+   * Photo field in *GalleryPhoto*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: galleryphoto.photo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  photo: prismic.ImageField<never>;
+
+  /**
+   * Title (Optional) field in *GalleryPhoto*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: galleryphoto.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Short Description (Optional) field in *GalleryPhoto*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: galleryphoto.short_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  short_description: prismic.KeyTextField;
+
+  /**
+   * Link External Photo (Optional) field in *GalleryPhoto*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: galleryphoto.link_external_photo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link_external_photo: prismic.LinkField;
+}
+
+/**
+ * GalleryPhoto document from Prismic
+ *
+ * - **API ID**: `galleryphoto`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type GalleryphotoDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<GalleryphotoDocumentData>,
+    "galleryphoto",
+    Lang
+  >;
+
 type LandingPageDocumentDataSlicesSlice =
   | ImageSlice
   | PageDescriptionSlice
@@ -1045,12 +1204,15 @@ export type StudentsPageDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | ActivitiesPageDocument
+  | ActivityDocument
+  | ActvityDocument
   | CollaboratorDocument
   | CollaboratorsPageDocument
   | ContactPageDocument
   | DraPalestinaGuevaraPageDocument
   | FooterDocument
   | GalleryPageDocument
+  | GalleryphotoDocument
   | LandingPageDocument
   | PublicationDocument
   | PublicationsPageDocument
@@ -1358,6 +1520,10 @@ declare module "@prismicio/client" {
       ActivitiesPageDocument,
       ActivitiesPageDocumentData,
       ActivitiesPageDocumentDataSlicesSlice,
+      ActivityDocument,
+      ActivityDocumentData,
+      ActvityDocument,
+      ActvityDocumentData,
       CollaboratorDocument,
       CollaboratorDocumentData,
       CollaboratorsPageDocument,
@@ -1374,6 +1540,8 @@ declare module "@prismicio/client" {
       GalleryPageDocument,
       GalleryPageDocumentData,
       GalleryPageDocumentDataSlicesSlice,
+      GalleryphotoDocument,
+      GalleryphotoDocumentData,
       LandingPageDocument,
       LandingPageDocumentData,
       LandingPageDocumentDataSlicesSlice,

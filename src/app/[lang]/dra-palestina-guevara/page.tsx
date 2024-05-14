@@ -49,41 +49,43 @@ export default async function DraPalestinaGuevara({params:{lang}}:PageProps){
                     />
                 </Card>
             </section>
-            <section className="flex flex-col gap-gap">
-                <Subtitle
-                    label={langDictionary.dra.career}
-                />
-                {careerList.map((career)=>
-                    <Card
-                        key={career.description[0]?.type}
+            <div className="flex gap-gap lg:flex-row flex-col">
+                <section className="flex flex-col gap-gap">
+                    <Subtitle
+                        label={langDictionary.dra.career}
+                    />
+                    {careerList.map((career)=>
+                        <Card
+                            key={career.description[0]?.type}
+                        >
+                            <PrismicRichText
+                                field={career.description}
+                            />
+                        </Card>
+                    )}
+                </section>
+                <section className="flex flex-col gap-gap">
+                    <Subtitle
+                        label={langDictionary.lastPublicationsTitle}
+                    />
+                    {
+                        recentPublications.map(publication=>
+                            <Publication
+                                key={publication
+                                    .id
+                                }
+                                document={publication}
+                            />
+                        )
+                    }
+                    <Link 
+                        className="bg-secondary rounded p-gap text-white transition-all ease-in-out lg:duration-300 hover:bg-sky-700 text-center"
+                        href={`/${lang}/publications`}
                     >
-                        <PrismicRichText
-                            field={career.description}
-                        />
-                    </Card>
-                )}
-            </section>
-            <section className="flex flex-col gap-gap">
-                <Subtitle
-                    label={langDictionary.lastPublicationsTitle}
-                />
-                {
-                    recentPublications.map(publication=>
-                        <Publication
-                            key={publication
-                                .id
-                            }
-                            document={publication}
-                        />
-                    )
-                }
-                <Link 
-                    className="bg-secondary rounded p-gap text-white transition-all ease-in-out lg:duration-300 hover:bg-sky-700 text-center"
-                    href={`/${lang}/publications`}
-                >
-                    Ver más
-                </Link>
-            </section>
+                        Ver más publicaciones
+                    </Link>
+                </section>
+            </div>
         </main>
     )
 }

@@ -18,7 +18,7 @@ export default async function Footer(
 
 
     return(
-        <footer className="w-full flex flex-col px-gap py-padding gap-padding lg:flex-row-reverse lg:justify-between items-center">
+        <footer className="w-full flex flex-col px-gap py-padding gap-padding lg:flex-row-reverse lg:justify-between items-center mt-padding">
             <ContactCardsFooterWrapper
                 footerInfo={footerInfo}
                 langDictionary={langDictionary}

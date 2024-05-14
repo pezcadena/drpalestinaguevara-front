@@ -1,0 +1,17 @@
+{
+  "format": "custom",
+  "id": "actvity",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      }
+    }
+  },
+  "label": "Actvity",
+  "repeatable": true,
+  "status": true
+}

@@ -1,0 +1,47 @@
+{
+  "format": "custom",
+  "id": "galleryphoto",
+  "label": "GalleryPhoto",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "photo": {
+        "type": "Image",
+        "config": {
+          "label": "Photo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title (Optional)",
+          "placeholder": ""
+        }
+      },
+      "short_description": {
+        "type": "Text",
+        "config": {
+          "label": "Short Description (Optional)",
+          "placeholder": ""
+        }
+      },
+      "link_external_photo": {
+        "type": "Link",
+        "config": {
+          "label": "Link External Photo (Optional)",
+          "placeholder": "",
+          "select": null
+        }
+      }
+    }
+  }
+}
