@@ -27,7 +27,7 @@ export default async function Contact({params:{lang}}:PageProps){
                 flex flex-col lg:flex-row gap-gap
             ">
                 <div
-                    className="w-1/3"
+                    className="lg:w-1/3"
                 >
                     <ContactCards
                         langDictionary={langDictionary}
