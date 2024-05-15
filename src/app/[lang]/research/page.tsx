@@ -5,14 +5,14 @@ import ContentIndex from "../components/content-index";
 import HeadlineCard from "../components/headline-card";
 import { PageProps } from "../page";
 import ResearchListWrapper from "./components/research-list-wrapper";
-import { createContentSectionList } from "@/app/functions/create-content-section-list";
+import { createContentSectionListbyYear } from "@/app/functions/create-content-section-list";
 import { ResearchDocument } from "../../../../prismicio-types";
 
 export default async function Research({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
     const client = createClient();
     const carousel = (await client.getSingle('research_page')).data.slices[0]?.items;
-    const sectionList = createContentSectionList<ResearchDocument<string>>(await client.getAllByType('research',{
+    const sectionList = createContentSectionListbyYear<ResearchDocument<string>>(await client.getAllByType('research',{
         orderings:[
           {
             field:'my.research.date',
@@ -36,7 +36,7 @@ export default async function Research({params:{lang}}:PageProps){
                 flex flex-col lg:flex-row-reverse relative gap-gap
             ">
                 <ContentIndex
-                    sectionList={sectionList.map(section=>section.title)}
+                    sectionList={sectionList.map(section=>({id:section.title,title:section.title}))}
                 />
                 <ResearchListWrapper
                     sectionList={sectionList}

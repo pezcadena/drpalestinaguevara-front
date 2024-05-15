@@ -31,7 +31,7 @@ export default async function Publications({params:{lang}}:PageProps) {
                 flex flex-col lg:flex-row-reverse relative gap-gap
             ">
                 <ContentIndex
-                    sectionList={publicationList.map(publication=>publication.title)}
+                    sectionList={publicationList.map(publication=>({id:publication.title, title:publication.title}))}
                 />
                 <PublicationListWrapper
                     publicationList={publicationList}

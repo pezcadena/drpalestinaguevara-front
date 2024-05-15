@@ -79,9 +79,3 @@ export default async function Home({params:{lang}}:PageProps) {
     </div>
   );
 }
-
-{/* <div 
-                className="grow lg:basis-1/2 p-mitad-gap"
-                key={document.id}
-              >
-              </div> */}

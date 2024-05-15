@@ -1,7 +1,6 @@
-import Image from "next/image";
-import { StudentDocument } from "../../../../../prismicio-types";
-import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
+import { PrismicRichText } from "@prismicio/react";
+import { StudentDocument } from "../../../../../prismicio-types";
 interface StudentProps{
     student: StudentDocument<string>;
 }

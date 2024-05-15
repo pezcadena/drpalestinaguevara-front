@@ -7,7 +7,7 @@ interface PrismicDocumentGeneric{
     }
 }
 
-export function createContentSectionList<
+export function createContentSectionListbyYear<
     T extends PrismicDocumentGeneric
     >(
         res: T[]

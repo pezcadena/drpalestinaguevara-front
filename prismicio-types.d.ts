@@ -145,24 +145,6 @@ export type ActivityDocument<Lang extends string = string> =
     Lang
   >;
 
-interface ActvityDocumentData {}
-
-/**
- * Actvity document from Prismic
- *
- * - **API ID**: `actvity`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type ActvityDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<ActvityDocumentData>,
-    "actvity",
-    Lang
-  >;
-
 /**
  * Content for Collaborator documents
  */
@@ -1205,7 +1187,6 @@ export type StudentsPageDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | ActivitiesPageDocument
   | ActivityDocument
-  | ActvityDocument
   | CollaboratorDocument
   | CollaboratorsPageDocument
   | ContactPageDocument
@@ -1522,8 +1503,6 @@ declare module "@prismicio/client" {
       ActivitiesPageDocumentDataSlicesSlice,
       ActivityDocument,
       ActivityDocumentData,
-      ActvityDocument,
-      ActvityDocumentData,
       CollaboratorDocument,
       CollaboratorDocumentData,
       CollaboratorsPageDocument,

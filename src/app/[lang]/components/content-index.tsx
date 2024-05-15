@@ -3,7 +3,10 @@
 import React from "react";
 
 export interface ContentIndexProps{
-    sectionList: string[],
+    sectionList:{
+        title:string,
+        id:string
+    }[],
 }
 
 export default function ContentIndex(
@@ -21,6 +24,7 @@ export default function ContentIndex(
         }
         
     }
+
     return(
         <nav className="sticky top-gap">
             <div className="
@@ -36,8 +40,8 @@ export default function ContentIndex(
                 {
                     sectionList.map(section=>
                         <a  
-                            key={section}
-                            href={'#'+ splitSection(section)}
+                            key={section.id}
+                            href={'#'+ section.id}
                             onClick={
                                 (e)=> onProgress(e)
                             }
@@ -55,17 +59,13 @@ export default function ContentIndex(
                                 duration-700
                                 ease-in-out
                             "
-                            data-to-scrollspy-id={section}
+                            data-to-scrollspy-id={section.id}
                         >
-                            {section}
+                            {section.title}
                         </a>
                     )
                 }
             </div>
         </nav>
     )
-}
-
-function splitSection(title:string){
-    return title.split(" - ")[1] ?? title;
 }

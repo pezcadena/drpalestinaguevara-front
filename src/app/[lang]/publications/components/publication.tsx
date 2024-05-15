@@ -14,7 +14,6 @@ export default function Publication({document}: PublicationCardProps){
                 bg-white
                 text-justify
                 rounded
-                h-full
             "
         >
             <PrismicRichText field={document.data.cite} />

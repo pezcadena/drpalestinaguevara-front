@@ -36,7 +36,7 @@ export default async function Collaborators({params:{lang}}:PageProps){
                 flex flex-col lg:flex-row-reverse relative gap-gap
             ">
                 <ContentIndex
-                    sectionList={sectionList.map(section=>section.title)}
+                    sectionList={sectionList.map(section=>({title:section.title,id:section.year.toString()}))}
                 />
                 <CollaboratorListWrapper
                     sectionList={sectionList as any}

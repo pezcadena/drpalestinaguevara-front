@@ -1,25 +1,35 @@
 import { getDictionary } from "@/app/dictionaries/dictionaries";
 import { createClient } from "@/prismicio";
 import Carousel from "../components/carousel";
-import ContentIndex from "../components/content-index";
 import HeadlineCard from "../components/headline-card";
 import { PageProps } from "../page";
-import ResearchListWrapper from "../research/components/research-list-wrapper";
 import GalleryCardListWrapper from "./components/gallery-card-list-wrapper";
+import { GalleryphotoDocument } from "../../../../prismicio-types";
+import ContentIndex from "../components/content-index";
 
 export default async function Gallery({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
-    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
+    
     const client = createClient();
-    const carousel = (await client.getSingle('gallery_page',{ref:masterRef})).data.slices[0]?.items;
-    const researchList = [
-        {
-            title:"2024"
-        },
-        {
-            title:"2023"
+    const carousel = (await client.getSingle('gallery_page')).data.slices[0]?.items;
+
+    
+    const sectionList = (await client.getAllByType('galleryphoto',{
+        lang: lang == 'en' ? 'en-us':'es-mx',
+    })).reduce<{title:string,contentList:GalleryphotoDocument<string>[],id:string}[]>((prev,curr,index)=>{
+        let tagExistente = prev.find(objeto => objeto.title === curr.tags[0]);
+
+        if (tagExistente) {
+            tagExistente.contentList.push(curr);
+        } else {
+            prev.push({
+                title: curr.tags[0],
+                contentList: [curr],
+                id: index.toString()
+            });
         }
-    ]
+        return prev;
+    },[]);
 
     return (
         <div className="flex flex-col gap-gap">
@@ -34,14 +44,12 @@ export default async function Gallery({params:{lang}}:PageProps){
             <section className="
                 flex flex-col lg:flex-row-reverse relative gap-gap
             ">
-                {/* 
-                <PublicationListWrapper
-                    publicationList={publicationList}
-                /> */}
                 <ContentIndex
-                    sectionList={researchList.map(research=>research.title)}
+                    sectionList={sectionList.map(section=>({id:section.id, title: section.title}))}
                 />
-                <GalleryCardListWrapper/>
+                <GalleryCardListWrapper
+                    sectionList={sectionList}
+                />
             </section>
         </div>
     );
