@@ -16,7 +16,7 @@ export default async function Gallery({params:{lang}}:PageProps){
     
     const sectionList = (await client.getAllByType('galleryphoto',{
         lang: lang == 'en' ? 'en-us':'es-mx',
-    })).reduce<{title:string,contentList:GalleryphotoDocument<string>[],id:string}[]>((prev,curr,index)=>{
+    })).reduce<{title:string,contentList:GalleryphotoDocument<string>[],id:string}[]>((prev,curr)=>{
         let tagExistente = prev.find(objeto => objeto.title === curr.tags[0]);
 
         if (tagExistente) {
@@ -25,7 +25,7 @@ export default async function Gallery({params:{lang}}:PageProps){
             prev.push({
                 title: curr.tags[0],
                 contentList: [curr],
-                id: index.toString()
+                id: curr.tags[0].replace(/[^a-zA-Z]/g, "")
             });
         }
         return prev;
@@ -49,6 +49,7 @@ export default async function Gallery({params:{lang}}:PageProps){
                 />
                 <GalleryCardListWrapper
                     sectionList={sectionList}
+                    langDictionary={langDictionary}
                 />
             </section>
         </div>

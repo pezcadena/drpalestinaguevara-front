@@ -1,25 +1,21 @@
 import { getDictionary } from "@/app/dictionaries/dictionaries";
 import { createClient } from "@/prismicio";
+import { ActivityDocument } from "../../../../prismicio-types";
 import Carousel from "../components/carousel";
 import ContentIndex from "../components/content-index";
 import HeadlineCard from "../components/headline-card";
 import GalleryCardListWrapper from "../gallery/components/gallery-card-list-wrapper";
 import { PageProps } from "../page";
+import dayjs from "dayjs";
 
 export default async function Activities({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
-    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     
     const client = createClient();
-    const carousel = (await client.getSingle('activities_page',{ref:masterRef})).data.slices[0]?.items;
-    const researchList = [
-        {
-            title:"2024"
-        },
-        {
-            title:"2023"
-        }
-    ]
+    const carousel = (await client.getSingle('activities_page')).data.slices[0]?.items;
+    const sectionList = createContentSectionListByMonth(await client.getAllByType('activity',{
+        lang: lang == 'en' ? 'en-us':'es-mx',
+    }), langDictionary);
 
     return (
         <div className="flex flex-col gap-gap">
@@ -34,15 +30,47 @@ export default async function Activities({params:{lang}}:PageProps){
             <section className="
                 flex flex-col lg:flex-row-reverse relative gap-gap
             ">
-                {/* 
-                <PublicationListWrapper
-                    publicationList={publicationList}
-                /> */}
                 <ContentIndex
-                    sectionList={researchList.map(research=>research.title)}
+                    sectionList={sectionList.map(section=>({id: section.id, title: section.title}))}
                 />
-                <GalleryCardListWrapper/>
+                <GalleryCardListWrapper
+                    sectionList={sectionList}
+                    langDictionary={langDictionary}
+                />
             </section>
         </div>
     );
+}
+
+function createContentSectionListByMonth(
+    res: ActivityDocument<string>[],
+    langDictionary:any
+) {
+const sectionList: {title:string, contentList: ActivityDocument<string>[], id:string}[] = [];
+res.forEach((content) => {
+    const month = dayjs(content.data.full_date).month();
+    const contentListNueva = sectionList[month]?.contentList ?? [];
+
+    contentListNueva.push(content);
+    sectionList[month] = {
+        title: langDictionary.months[month],
+        contentList: contentListNueva,
+        id: month.toString()
+    };
+});
+
+sectionList.sort((a, b) => {
+    let fechaA = a.id;
+    let fechaB = b.id;
+  
+    if (fechaA < fechaB) {
+      return 1;
+    }
+    if (fechaA > fechaB) {
+      return -1;
+    }
+    return 0;
+});
+
+return sectionList;
 }

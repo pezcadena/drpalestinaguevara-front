@@ -1,13 +1,20 @@
 "use client"
 import ScrollSpy from "react-ui-scrollspy";
 import GalleryCardList, { GalleryCardListProps } from "./gallery-card-list";
+import { GalleryphotoDocument, ActivityDocument } from "../../../../../prismicio-types";
 
 interface GalleryCardListWrapperProps{
-    sectionList: GalleryCardListProps[]
+    sectionList: {
+        title: string,
+        contentList: GalleryphotoDocument<string>[] | ActivityDocument<string>[],
+        id: string,
+    }[],
+    langDictionary:any
 }
 
 export default function GalleryCardListWrapper({
-    sectionList
+    sectionList,
+    langDictionary
 }:GalleryCardListWrapperProps){
     return(
         <section className="flex flex-col gap-gap w-full">
@@ -19,6 +26,7 @@ export default function GalleryCardListWrapper({
                         title={section.title}
                         contentList={section.contentList}
                         id={section.id}
+                        langDictionary={langDictionary}
                     />
                 )
             }

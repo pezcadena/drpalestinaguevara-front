@@ -2,13 +2,16 @@ import { DocumentTypeEnum } from "@/app/api/enums/document-type.enum";
 import { AllDocumentTypes } from "../../../../prismicio-types"
 import Publication from "../publications/components/publication";
 import ResearchCard from "../research/components/research-card";
+import GalleryCard from "../gallery/components/gallery-card";
 
 interface NewContentWrapperProps{
-    document: AllDocumentTypes
+    document: AllDocumentTypes,
+    langDictionary: any
 }
 export default function NewContentWrapper(
     {
-        document
+        document,
+        langDictionary
     }: NewContentWrapperProps
 ){
     switch (document.type) {
@@ -28,11 +31,18 @@ export default function NewContentWrapper(
                     />
                 </div>
             );
+        case DocumentTypeEnum.activity:
+                return(
+                    <div className="grow lg:basis-1/2 p-mitad-gap">
+                        <GalleryCard
+                            photo={document}
+                            langDictionary={langDictionary}
+                        />
+                    </div>
+                );
         default:
             return(
-                <div className="h-full">
-                    NADA
-                </div>
+                <span></span>
             );
     }
 }

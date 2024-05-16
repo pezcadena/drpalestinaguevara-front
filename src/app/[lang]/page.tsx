@@ -29,6 +29,10 @@ export default async function Home({params:{lang}}:PageProps) {
   const recentPublications = await client.getAllByTag('Content',{
     orderings:[
       {
+        field:'my.activity.full_date',
+        direction:'desc'
+      },
+      {
         field:'my.research.date',
         direction:'desc'
       },
@@ -63,13 +67,14 @@ export default async function Home({params:{lang}}:PageProps) {
             )
           }
         </div>
-        <Subtitle label={langDictionary.lastPublicationsTitle}/>
+        <Subtitle label={langDictionary.lastContentTitle}/>
         <div className="flex flex-wrap -m-mitad-gap">
           {
             recentPublications.map(document=>
               
                 <NewContentWrapper
                   document={document}
+                  langDictionary={langDictionary}
                   key={document.id}
                 />
             )

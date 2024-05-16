@@ -1,17 +1,19 @@
-import { GalleryphotoDocument } from "../../../../../prismicio-types";
+import { ActivityDocument, GalleryphotoDocument } from "../../../../../prismicio-types";
 import Subtitle from "../../components/subtitle";
 import GalleryCard from "./gallery-card";
 
 export interface GalleryCardListProps{
     title: string,
-    contentList: GalleryphotoDocument<string>[],
-    id: string
+    contentList: GalleryphotoDocument<string>[] | ActivityDocument<string>[],
+    id: string,
+    langDictionary:any
 }
 
 export default function GalleryCardList({
     title,
     contentList,
-    id
+    id,
+    langDictionary
 }:GalleryCardListProps){
     return(
         <section className="flex flex-col gap-gap mb-gap" id={id}>
@@ -24,6 +26,7 @@ export default function GalleryCardList({
                         <div className="grow lg:basis-1/2 p-mitad-gap" key={photo.id}>
                             <GalleryCard
                                 photo={photo}
+                                langDictionary={langDictionary}
                             />
                         </div>
                     )
