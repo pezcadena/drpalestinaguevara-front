@@ -3,7 +3,7 @@ import { createClient } from "@/prismicio";
 import Carousel from "../components/carousel";
 import ContentIndex from "../components/content-index";
 import HeadlineCard from "../components/headline-card";
-import { PageProps } from "../page";
+import { PageProps } from "../(landing)/page";
 import ResearchListWrapper from "./components/research-list-wrapper";
 import { createContentSectionListbyYear } from "@/app/functions/create-content-section-list";
 import { ResearchDocument } from "../../../../prismicio-types";

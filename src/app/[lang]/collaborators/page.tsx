@@ -2,7 +2,7 @@ import { getDictionary } from "@/app/dictionaries/dictionaries";
 import ContentIndex from "../components/content-index";
 import Carousel from "../components/carousel";
 import HeadlineCard from "../components/headline-card";
-import { PageProps } from "../page";
+import { PageProps } from "../(landing)/page";
 import { createClient } from "@/prismicio";
 import CollaboratorListWrapper from "./components/collaborator-list-wrapper";
 import { CollaboratorDocument } from "../../../../prismicio-types";

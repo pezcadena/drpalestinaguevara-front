@@ -1,7 +1,7 @@
 import { getDictionary } from "@/app/dictionaries/dictionaries";
 import Carousel from "../components/carousel";
 import HeadlineCard from "../components/headline-card";
-import { PageProps } from "../page";
+import { PageProps } from "../(landing)/page";
 import { createClient } from "@/prismicio";
 import Subtitle from "../components/subtitle";
 import Card from "../components/card";

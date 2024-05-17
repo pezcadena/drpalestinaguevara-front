@@ -1,10 +1,10 @@
-import { PageDescriptionSlice, TitleSlice } from "../../../prismicio-types";
-import Carousel from "./components/carousel";
-import HeadlineCard from "./components/headline-card";
-import Subtitle from "./components/subtitle";
+import { PageDescriptionSlice, TitleSlice } from "../../../../prismicio-types";
+import Carousel from "../components/carousel";
+import HeadlineCard from "../components/headline-card";
+import Subtitle from "../components/subtitle";
 import {createClient} from "@/prismicio";
-import { getDictionary, Locale } from "../dictionaries/dictionaries";
-import NewContentWrapper from "./components/new-content-wrapper";
+import { getDictionary, Locale } from "../../dictionaries/dictionaries";
+import NewContentWrapper from "../components/new-content-wrapper";
 
 
 export type PageProps = {
@@ -66,6 +66,7 @@ export default async function Home({params:{lang}}:PageProps) {
               </div>
             )
           }
+          
         </div>
         <Subtitle label={langDictionary.lastContentTitle}/>
         <div className="flex flex-wrap -m-mitad-gap">

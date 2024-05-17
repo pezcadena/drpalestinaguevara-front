@@ -2,16 +2,15 @@ import { getDictionary } from "@/app/dictionaries/dictionaries";
 import { createClient } from "@/prismicio";
 import Carousel from "../components/carousel";
 import HeadlineCard from "../components/headline-card";
-import { PageProps } from "../page";
+import { PageProps } from "../(landing)/page";
 import ContactCards from "./components/contact-cards";
 import Map from "./components/map";
 
 export default async function Contact({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
-    const masterRef = (await(await fetch('https://guevarafiore.cdn.prismic.io/api/v2')).json()).refs[0].ref;
     const client = createClient();
-    const carousel = (await client.getSingle('contact_page',{ref:masterRef})).data.slices[0]?.items;
-    const footerInfo = (await client.getSingle('footer',{ref:masterRef})).data;
+    const carousel = (await client.getSingle('contact_page')).data.slices[0]?.items;
+    const footerInfo = (await client.getSingle('footer')).data;
 
     return (
         <div className="flex flex-col gap-gap">

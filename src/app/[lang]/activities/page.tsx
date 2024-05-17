@@ -5,7 +5,7 @@ import Carousel from "../components/carousel";
 import ContentIndex from "../components/content-index";
 import HeadlineCard from "../components/headline-card";
 import GalleryCardListWrapper from "../gallery/components/gallery-card-list-wrapper";
-import { PageProps } from "../page";
+import { PageProps } from "../(landing)/page";
 import dayjs from "dayjs";
 
 export default async function Activities({params:{lang}}:PageProps){

@@ -2,7 +2,7 @@ import { getDictionary } from "@/app/dictionaries/dictionaries";
 import { createClient } from "@/prismicio";
 import Carousel from "../components/carousel";
 import HeadlineCard from "../components/headline-card";
-import { PageProps } from "../page";
+import { PageProps } from "../(landing)/page";
 import GalleryCardListWrapper from "./components/gallery-card-list-wrapper";
 import { GalleryphotoDocument } from "../../../../prismicio-types";
 import ContentIndex from "../components/content-index";
