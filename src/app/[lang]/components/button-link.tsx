@@ -20,7 +20,10 @@ export default function ButtonLink({label, href, onClickLink, isActive}:ButtonPr
                 )
             }
             href={href ?? ''}
-            onClick={()=>onClickLink(false)}
+            onClick={()=>{
+                onClickLink(false);
+                window.scrollTo(0,0)
+            }}
         >
             {label}
         </Link>
