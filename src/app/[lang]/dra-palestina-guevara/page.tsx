@@ -1,14 +1,14 @@
 import { getDictionary } from "@/app/dictionaries/dictionaries";
+import { createClient } from "@/prismicio";
+import { PrismicRichText } from "@prismicio/react";
+import Link from "next/link";
+import { PageProps } from "../(landing)/page";
+import { CareerSliceDefaultItem, ImageSliceDefaultItem, PublicationDocument, Simplify } from "../../../../prismicio-types";
+import Card from "../components/card";
 import Carousel from "../components/carousel";
 import HeadlineCard from "../components/headline-card";
-import { PageProps } from "../(landing)/page";
-import { createClient } from "@/prismicio";
 import Subtitle from "../components/subtitle";
-import Card from "../components/card";
-import { Simplify, ImageSliceDefaultItem, CareerSliceDefaultItem, PublicationDocument } from "../../../../prismicio-types";
-import { PrismicRichText } from "@prismicio/react";
 import Publication from "../publications/components/publication";
-import Link from "next/link";
 
 export default async function DraPalestinaGuevara({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
