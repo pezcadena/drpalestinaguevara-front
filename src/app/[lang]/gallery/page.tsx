@@ -1,11 +1,11 @@
 import { getDictionary } from "@/app/dictionaries/dictionaries";
 import { createClient } from "@/prismicio";
-import Carousel from "../components/carousel";
-import HeadlineCard from "../components/headline-card";
 import { PageProps } from "../(landing)/page";
-import GalleryCardListWrapper from "./components/gallery-card-list-wrapper";
 import { GalleryphotoDocument } from "../../../../prismicio-types";
+import Carousel from "../components/carousel";
 import ContentIndex from "../components/content-index";
+import HeadlineCard from "../components/headline-card";
+import GalleryCardListWrapper from "./components/gallery-card-list-wrapper";
 
 export default async function Gallery({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
@@ -52,6 +52,7 @@ export default async function Gallery({params:{lang}}:PageProps){
                     langDictionary={langDictionary}
                 />
             </section>
+            
         </div>
     );
 }
