@@ -1,11 +1,10 @@
 import { getDictionary } from "@/app/dictionaries/dictionaries";
 import { createClient } from "@/prismicio";
+import { PageProps } from "../(landing)/page";
+import { StudentDocument } from "../../../../prismicio-types";
 import Carousel from "../components/carousel";
 import HeadlineCard from "../components/headline-card";
-import { PageProps } from "../(landing)/page";
-import StudentList from "./components/student-list";
 import StudentListWrapper from "./components/student-list-wrapper";
-import { StudentDocument } from "../../../../prismicio-types";
 
 export default async function Students({params:{lang}}:PageProps){
     const langDictionary = await getDictionary(lang);
