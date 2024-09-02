@@ -13,9 +13,10 @@ export default function ButtonLink({label, href, onClickLink, isActive}:ButtonPr
         <Link 
             className={
                 clsx(
-                    "py-gap text-white flex justify-center text-nowrap hover:bg-sky-700 cursor-pointer transition-all ease-in-out lg:duration-300 px-gap",
+                    "py-gap flex justify-center text-nowrap hover:bg-primary cursor-pointer transition-all ease-in-out lg:duration-300 px-gap",
                     {
-                        "w-full bg-primary":isActive,
+                        "w-full bg-primary text-white ":isActive,
+                        "text-secondary hover:text-white": !isActive
                     }
                 )
             }

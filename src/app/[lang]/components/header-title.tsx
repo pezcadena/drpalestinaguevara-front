@@ -13,21 +13,21 @@ interface HeaderTitleProps{
 export default function HeaderTitle({isNavbarVisible,onShowNavbar, langDictionary}:HeaderTitleProps){
     return (
         <section className="z-40 bg-light">
-            <div className="flex justify-center w-full py-gap">
+            <div className="flex w-full py-gap">
                 <div className="flex gap-2 items-center">
                     <Image 
                         src="/img/logo.png"
                         alt="Logo del laboratorio de ecología evolutiva de la BUAP"
-                        className="w-28"
+                        className="w-[15rem]"
                         width={1000}
                         height={1000}
                     />
                     <div>
-                        <h2 className="text-h2-bold lg:text-h2-bold-desktop font-serif text-primary">
+                        <h2 className="text-h2-bold lg:text-h2-bold-desktop font-serif text-secondary">
                             {langDictionary.headerTitle}
                         </h2>
                         <p>
-                            BUAP
+                            Dra. Palestina Guevara-Fiore
                         </p>
                     </div>
                 </div>

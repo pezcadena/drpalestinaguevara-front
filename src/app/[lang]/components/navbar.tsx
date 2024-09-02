@@ -70,7 +70,7 @@ export default function Navbar({isVisible, onClickLink, langDictionary, lang}:na
 
         <nav className={
             clsx(
-                "flex flex-col lg:flex-row w-full bg-secondary rounded overflow-hidden transition-all ease-out duration-500 z-50 lg:h-auto",
+                "flex flex-col lg:flex-row w-full bg-white rounded overflow-hidden transition-all ease-out duration-500 z-50 lg:h-auto",
                 {
                     "h-0": !isVisible,
                     "h-[560px]": isVisible 

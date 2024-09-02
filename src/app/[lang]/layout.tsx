@@ -2,7 +2,7 @@ import "@/app/assets/global.css";
 import { repositoryName } from '@/prismicio';
 import { PrismicPreview } from '@prismicio/next';
 import type { Metadata } from "next";
-import { Inter, Quattrocento } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import Footer from "./components/footer";
 import Header from "./components/header";
 import { getDictionary } from "../dictionaries/dictionaries";
@@ -10,10 +10,10 @@ import "yet-another-react-lightbox/styles.css";
 export const fetchCache = 'force-no-store';
 
 const inter = Inter({ subsets: ["latin"] });
-const quattrocento = Quattrocento({
+const outfit = Outfit({
   weight:["400","700"],
   subsets: ['latin'],
-  variable: '--font-quattrocento',
+  variable: '--font-outfit',
 })
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default async function RootLayout({
 }>) {
   const langDictionary = await getDictionary(lang);
   return (
-    <html lang={lang ?? 'en'} className={`${quattrocento.variable} font-serif`}>
+    <html lang={lang ?? 'en'} className={`${outfit.variable}`}>
       <body className={`${inter.className} antialiased`}>
         <main className="p-gap flex flex-col gap-gap max-w-screen-xl mx-auto">
           <Header

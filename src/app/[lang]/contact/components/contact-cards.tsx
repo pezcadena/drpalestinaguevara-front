@@ -99,22 +99,22 @@ export default function ContactCards({
                 }
             </div>
             <div className="w-full flex justify-between items-center gap-gap">
-                <a className="w-full flex justify-center p-mitad-gap bg-secondary rounded-sm cursor-pointer hover:bg-sky-700"
+                <a className="w-full flex justify-center p-mitad-gap bg-white rounded-sm cursor-pointer hover:bg-primary"
                 href={(footerInfo.instagram as any).url}
                 target="_blank"
                 >
-                    <BsInstagram className="text-4xl text-white"/>
+                    <BsInstagram className="text-4xl text-secondary hover:text-white"/>
                 </a>
-                <a className="w-full flex justify-center p-mitad-gap bg-secondary rounded-sm cursor-pointer hover:bg-sky-700"
+                <a className="w-full flex justify-center p-mitad-gap bg-white rounded-sm cursor-pointer hover:bg-primary"
                 href={(footerInfo.twitter as any).url}
                 target="_blank"
                 >
-                    <BsTwitter className="text-4xl text-white"/>
+                    <BsTwitter className="text-4xl text-secondary hover:text-white"/>
                 </a>
-                <a className="w-full flex justify-center p-mitad-gap bg-secondary rounded-sm cursor-pointer hover:bg-sky-700"
+                <a className="w-full flex justify-center p-mitad-gap bg-white rounded-sm cursor-pointer hover:bg-primary"
                 href={(footerInfo.facebook as any).url}
                 target="_blank">
-                    <BsFacebook className="text-4xl text-white"/>
+                    <BsFacebook className="text-4xl text-secondary hover:text-white"/>
                 </a>
             </div>
         </div>

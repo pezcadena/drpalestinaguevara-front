@@ -7,7 +7,8 @@ body{
 }
 
 .active-scroll-spy {
-    background-color: #319853;
+    background-color: #444444;
+    color: white !important;
 }
 
 html {

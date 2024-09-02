@@ -7,7 +7,7 @@ const config: Config = {
   theme: {
     extend: {
       fontSize:{
-        'h1-bold-desktop': ['60px', {
+        'h1-bold-desktop': ['80px', {
           fontWeight: '700',
           lineHeight: '1'
         }],
@@ -25,11 +25,11 @@ const config: Config = {
         }],
       },
       fontFamily:{
-        serif: ['var(--font-quattrocento)']
+        serif: ['var(--font-outfit)']
       },
       colors:{
-        'primary':"#319853",
-        'secondary':"#4F8ABB",
+        'primary':"#444444",
+        'secondary':"#338E90",
         'white':'#FFFAF9',
         'light': '#EDE8E8'
       },

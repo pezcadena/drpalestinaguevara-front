@@ -31,7 +31,7 @@ export default function ContentIndex(
                 rounded
                 flex
                 overflow-hidden
-                bg-secondary
+                bg-white
                 lg:flex-col
                 lg:w-[15rem]
                 lg:sticky 
@@ -51,7 +51,7 @@ export default function ContentIndex(
                                 items-center
                                 px-padding
                                 py-gap
-                                text-white
+                                text-secondary
                                 w-full
                                 font-bold
                                 cursor-pointer
